@@ -1,4 +1,4 @@
-# ISTE432-Group1
+# ISTE.432 - Group 1 - Victorian Autobiography Information Network
 
 ### Summary
 The Victorian Autobiography Information Network in its current form allows for users, authors, historians, professors, and other researchers to catalog historical text. Basic users are able to search the archive, while authenticated users are able to categorize new titles and their genres.
