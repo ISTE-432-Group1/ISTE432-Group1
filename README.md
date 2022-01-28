@@ -13,7 +13,6 @@ The current system’s third column does not allow for multiple “subject[s] of
 ### Goals
 Our group plans to build out a new database that is normalized and only logs validated data. To accomplish this, we will make the following changes:
 * Cleaning existing data by trimming values and removing repeated records.
-* TODO: Talk about each column briefly
 * Establish a normalized database with new tables, rather than cramming everything into columns of a single table
 * Add four distinct roles to users: public (unauthorized), authorized: contributor, editor, administrator
   * Public - can browse, search, and execute canned queries
