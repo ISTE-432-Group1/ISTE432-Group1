@@ -37,3 +37,15 @@ Our group plans to build out a new database that is normalized and only logs val
   * Historians will want to primarily search and browse for books and maybe add their own entries as well.
   * Professors will want their students to search and browse books for their school work. 
 
+
+### Scope
+The scope of the project involves the cataloging of books based on type, authorship, subject, author, title, publisher, year, descriptor, named persons, notes, and where it is located. Being able to locate a book based on any of these search queries will be available to do. Adding an entry with all of these fields will be possible by the users. We will not be adding a function to edit entries but the ability to remove entries will be available.
+
+
+### Input
+
+
+### Processing
+
+
+### Output
