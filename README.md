@@ -42,9 +42,29 @@ The scope of the project involves the cataloging of books based on type, authors
 
 
 ### Input
+* Information on books (type, authorship, subject, author, title, publisher, year, descriptor, named persons, notes and location) can queried by the users to catalog/search books
+* Partial user input will be received as users select their account type and act according to their role.
+  * Editor: approve contributions
+  * Contributor: propose contributions
+  * Administrator: add/delete accounts and control their statuses
+* Public - partial user input will be received as users enter search queries
+* The public will be able to browse and view entries, but they will not be able to edit or delete entries, and they will not be able to create new entries. Even anonymous viewers without an account have this privilege level.
+* Contributors can propose contributions, these can be new entries or changes to existing entries, but they can not edit entries. Anyone can make a contributor account in the system.
+* Editors have the authority to actually add new entries, edit existing entries, and delete existing entries. Not just anyone can make an account with editor privilege, and administrator is needed for this. 
+* Administrators can create and control accounts and their privileges. They have the highest privilege level, giving them the same abilities as all privilege levels below them (editor, contributor, public).
 
 
 ### Processing
+* Searches will be run on partial user input (while entering or searching for a book, author, title, etc…) to provide examples of existing information in the database that fits the partial queries 
+* Propositions provided by contributors will be cleaned and checked against existing entries to ensure consistency and avoid duplication
+* Searches will be run based on the following parameters: type, authorship, subject, author, title, publisher, year, descriptor, named persons, notes and location.
+* Searches will be run based on partial user input (i.e. search by a single field, pull up all results by a an author whose name starts with a letter or contains letters)
+* All data will be sanitized and validated on entry to the database. 
+* All contributions will be checked against existing data, to ensure that it’s valid and to avoid duplicate entries.
 
 
 ### Output
+* Public: Users will be able to view the entries and search via a search function.
+* Editors: Editors will be able to see entries and pending contributions as well. List of proposed contributions to be accepted into the catalog or declined.
+* Contributors: Contributors will also be able to search, and will be able to see pending contributions in the system. Can view a searchable collection of books.
+* Administrators: Admins can see all of the above in addition to accounts and account settings. Can see a searchable collection of cataloged books. 
