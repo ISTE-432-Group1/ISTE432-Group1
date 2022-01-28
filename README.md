@@ -16,12 +16,12 @@ Our group plans to build out a new database that is normalized and only logs val
 * TODO: Talk about each column briefly
 * Establish a normalized database with new tables, rather than cramming everything into columns of a single table
 * Add four distinct roles to users: public (unauthorized), authorized: contributor, editor, administrator
-* * Public - can browse, search, and execute canned queries
-* * Contributor - proposes contributions
-* * Editor - approves contributions
-* * Administrator - controls accounts and manipulates database via DDL
+ * Public - can browse, search, and execute canned queries
+ * Contributor - proposes contributions
+ * Editor - approves contributions
+ * Administrator - controls accounts and manipulates database via DDL
 * Accounts actions
-* * Administrator - creates editor and administrator accounts 
-* * Contributor - any role can become contributor 
-* * ONLY administrator can create admin and contributor accounts, admin can also be editor
+ * Administrator - creates editor and administrator accounts 
+ * Contributor - any role can become contributor 
+ * ONLY administrator can create admin and contributor accounts, admin can also be editor
 
