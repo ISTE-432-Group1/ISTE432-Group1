@@ -25,3 +25,15 @@ Our group plans to build out a new database that is normalized and only logs val
   * Contributor - any role can become contributor 
   * ONLY administrator can create admin and contributor accounts, admin can also be editor
 
+
+### Stakeholders
+* Users
+ * Users will want to browse and search through the database of books.
+* Authors
+ * Authors will want to be able to create entries and also look at other books in the database.
+* Researchers, historians, and professors
+ * Researchers will want to add entries as well as browse and search for books that will help them in their work.
+ * Researchers and historians will also want to fact check other researchers and delete entries if needed.
+ * Historians will want to primarily search and browse for books and maybe add their own entries as well.
+ * Professors will want their students to search and browse books for their school work. 
+
