@@ -98,7 +98,7 @@ PHP - backend
 
 Javascript - frontend
 
-MySQLi - database
+MySQL - database
 
 
 ## 
