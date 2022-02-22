@@ -12,9 +12,7 @@ Front-end designer - Ben Shapiro
 DB Administrator - Michelle Bobilev
 
 
-## Background(the generic problem you’re interested in)
-
-
+## Background
 
 * What’s wrong with the current system?
     * The current system’s third column does not allow for multiple “subject[s] of life writing” to be selected. For example, if a book featured an adventurous criminal, it could only be labeled with one of those categories.
@@ -29,7 +27,7 @@ Summary:
 The current system has multiple issues. First, the third column does not allow to select multiple “subject[s] of life writing” - this is an issue because if a book features an adventurous criminal, it would only be labeled with either adventurous or criminal, not both categories. Another issue is that there is no way to uniquely identify or label authors, as of right now they can only be labeled with first name, last name and age. This is an issue because two different authors with the same name and age would have to be added as one individual, not two different authors. Additionally, the data dictionary explicitly contains numerous records with unvalidated data in column six, column seven lacks a method or labeling books without a clear publication date, and column eight and nine are “a mass of notes” according to the data dictionary, containing data with unvalidated/mixed data types. On top of the aforementioned problems with the system, VAIN in its present state is not normalized and contains many repeated records. 
 
 
-## Project description (from your first milestone)
+## Description
 
 This project is on the Victorian Autobiography Information Network, the goal of which is to allow users, authors, historians, professors and other researchers to catalog historical text. It also allows the general public to search the archive while giving authenticated users to categorize new titles and their genres. 
 
@@ -65,7 +63,7 @@ The current system poses certain challenges which requires optimization of the d
 ## 
 
 
-## Project Requirements (the voice of the client)
+## Project Requirements
 
 
 
@@ -108,20 +106,23 @@ MySQLi - database
 
 ## Design Patterns
 
-**Factory method pattern - for the creation of different accounts **
+**Factory method pattern - for the creation of different accounts**
 
-	Factory or factory method pattern is ideal for making new objects without exposing the object code to the user. When you have several different class types that can extend an abstract parent class, the factory method pattern is the pattern you want. Using the factory method pattern to handle the logic of account creation is a good idea because accounts are tied to security - different types of accounts have different privilege levels, granting them access to different functions. Exposing the underlying code for accounts and their creation to the end user would be a liability, so keeping it concealed and using the factory method pattern to create new accounts is more secure than just instantiating a new account object.
+* Factory or factory method pattern is ideal for making new objects without exposing the object code to the user. When you have several different class types that can extend an abstract parent class, the factory method pattern is the pattern you want. Using the factory method pattern to handle the logic of account creation is a good idea because accounts are tied to security - different types of accounts have different privilege levels, granting them access to different functions. Exposing the underlying code for accounts and their creation to the end user would be a liability, so keeping it concealed and using the factory method pattern to create new accounts is more secure than just instantiating a new account object.
 
 **Builder pattern - for building the front end depending on the privilege level of the user**
 
-**	**The builder pattern is used for the construction of modular things, using components. If you have a front end made up of components and that front end differs in appearance depending on who is accessing it, the builder pattern is a great choice. In our system, different types of accounts have different permissions, i.e., editors can make changes to content, but contributors and guests cannot. So if you have a button on your UI for editing content, you want that only to be loaded if the user has signed in on an account with at least editor level permissions. If the signed-in account doesn’t have permission to edit, the button shouldn’t exist for them, and the code for that button shouldn’t even be exposed to them. The builder pattern is good for constructing front ends with the right components for the right user, and keeping it secure so the user can’t see the code for components they don’t have access to.
+* The builder pattern is used for the construction of modular things, using components. If you have a front end made up of components and that front end differs in appearance depending on who is accessing it, the builder pattern is a great choice. In our system, different types of accounts have different permissions, i.e., editors can make changes to content, but contributors and guests cannot. So if you have a button on your UI for editing content, you want that only to be loaded if the user has signed in on an account with at least editor level permissions. If the signed-in account doesn’t have permission to edit, the button shouldn’t exist for them, and the code for that button shouldn’t even be exposed to them. The builder pattern is good for constructing front ends with the right components for the right user, and keeping it secure so the user can’t see the code for components they don’t have access to.
 
-**Memento pattern - for keeping track of the states of our DAOs (if we decide to use them)**
+**Memento pattern - for keeping track of the states of our DAOs**
 
-The Memento pattern saves the state of an object. The point of the memento pattern’s capturing of the object’s internal state is so that you can restore the object to that state later in time. When working with databases, saving the state of the DB or of individual tables is usually a feature built into the dbms, and if something goes wrong or for any other reason you can restore a table to that saved state. This is ideal for the database itself, but there are times when you’ll want to save the state of a data access object before it’s written to our database. What if the user signs out while working on something? What if the user just closes the app without saving anything? Automatically writing to the database itself in these scenarios could pose risks to the data, but saving the state of work would be a great way to ensure they don’t lose too much of it, and could continue working on it when they come back without having to redo all of their work.
+* The Memento pattern saves the state of an object. The point of the memento pattern’s capturing of the object’s internal state is so that you can restore the object to that state later in time. When working with databases, saving the state of the DB or of individual tables is usually a feature built into the dbms, and if something goes wrong or for any other reason you can restore a table to that saved state. This is ideal for the database itself, but there are times when you’ll want to save the state of a data access object before it’s written to our database. What if the user signs out while working on something? What if the user just closes the app without saving anything? Automatically writing to the database itself in these scenarios could pose risks to the data, but saving the state of work would be a great way to ensure they don’t lose too much of it, and could continue working on it when they come back without having to redo all of their work.
 
 
-## Entity Relationship Diagram (this can be modified as you go along)
+## Entity Relationship Diagram
+
+
+![ER Diagram](https://github.com/ISTE-432-Group1/ISTE432-Group1/blob/main/ERDiagramMilestone2.png?raw=true)
 
 
 ## Timeline
@@ -141,13 +142,3 @@ Apr 8, 2022 - Milestone 6 Testing
 Apr 15, 2022 - Milestone 7 Packaging
 
 Apr 22, 2022 - Milestone 8 Finalized Project Code
-
-Other notes:
-
-
-
-* Minimum number of layers is 3 - data, business, application, presentation (can merge business and application if applicable)
-* Diagrams alone are not sufficient
-* Do more than mention a design pattern by name; say why and how
-* Always be coding
-    * Have sample coding for the design pattern
