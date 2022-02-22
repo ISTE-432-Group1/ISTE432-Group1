@@ -96,7 +96,7 @@ The current system poses certain challenges which requires optimization of the d
 
 PHP - backend
 
-Javascript - frontend
+JavaScript - frontend
 
 MySQL - database
 
