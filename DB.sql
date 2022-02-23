@@ -1,6 +1,13 @@
-DROP TABLE IF EXISTS 'Book';
-CREATE TABLE 'book' (
-  'bookID' int(11) NOT NULL, 
+CREATE TABLE 'PUBLISHER' (
+    'publisherID' int NOT NULL,
+    'placeOfPublication' varchar, 
+    'publisherName' varchar, 
+    'publisherType' varchar
+    PRIMARY KEY ('publisherID')
+);
+
+CREATE TABLE 'BOOK' (
+  'bookID' int(11) AUTO_INCREMENT NOT NULL, 
   'title' varchar(100) NOT NULL,
   'publisherID' int(11) NOT NULL, 
   'yearNote' varchar(100), 
@@ -11,9 +18,17 @@ CREATE TABLE 'book' (
   'numberPages' varchar(255), 
   'editionFormat' varchar(255), 
   'agreementType' varchar(255), 
-  'paymentAmount' decimal(6,2)
-  PRIMARY KEY ('bookID')
+  'paymentAmount' decimal(6,2),
+  PRIMARY KEY ('bookID'),
+  CONSTRAINT 'BOOK_fk' FOREIGN KEY ('publisherID') REFERENCES 'PUBLISHER' ('publisherID')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE 'BOOK_COLLABORATOR' (
+    'bookID' int(11) NOT NULL,
+    'collaboratorID' int(11) AUTO_INCREMENT NOT NULL,
+    PRIMARY KEY ('bookID', 'collaboratorID'), 
+    CONSTRAINT 'BOOK_COLLABORATOR_fk' FOREIGN KEY ('bookID') REFERENCES 'BOOK' ('bookID') 
+);
 
 CREATE TABLE 'SUBJECT' (
     'subjectID' int AUTO_INCREMENT NOT NULL,
@@ -60,3 +75,28 @@ CREATE TABLE 'NAMED_PERSON' (
     PRIMARY KEY ('namedPersonID')
 );
 
+CREATE TABLE 'VARIANT_PERSON' (
+    'namedPersonID' int NOT NULL,
+    'variant' varchar(255),
+    'note' text,
+    PRIMARY KEY ('namedPersonID', 'variant'),
+    CONSTRAINT 'VARIANT_PERSON_NAMED_PERSON_fk' FOREIGN KEY ('namedPersonID') REFERENCES 'NAMED_PERSON' ('namedPersonID')
+);
+
+CREATE TABLE 'AUTHOR' (
+    'authorID' int AUTO_INCREMENT NOT NULL,
+    'name' varchar(255),
+    'authorship' varchar(255),
+    'lifeYears' int,
+    PRIMARY KEY ('authorID')
+);
+
+CREATE TABLE 'BOOK_AUTHOR' (
+    'bookID' int NOT NULL,
+    'authorID' int NOT NULL,
+    'namedPersonID' int NOT NULL,
+    PRIMARY KEY ('bookID', 'authorID', 'namedPersonID'),
+    CONSTRAINT 'BOOK_BOOK_AUTHOR_fk' FOREIGN KEY ('bookID') REFERENCES 'BOOK' ('bookID'),
+    CONSTRAINT 'AUTHOR_BOOK_AUTHOR_fk' FOREIGN KEY ('authorID') REFERENCES 'AUTHOR' ('authorID'),
+    CONSTRAINT 'NAMED_PERSON_BOOK_AUTHOR_fk' FOREIGN KEY ('namedPersonID') REFERENCES 'NAMED_PERSON' ('namedPersonID')
+);
