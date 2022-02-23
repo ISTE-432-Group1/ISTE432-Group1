@@ -3,7 +3,7 @@ CREATE TABLE 'PUBLISHER' (
     'publisherID' int NOT NULL,
     'placeOfPublication' varchar, 
     'publisherName' varchar, 
-    'publisherType' varchar
+    'publisherType' varchar,
     PRIMARY KEY ('publisherID')
 );
 
