@@ -37,7 +37,6 @@ DROP TABLE IF EXISTS SUBJECT;
 CREATE TABLE SUBJECT (
     subjectID int AUTO_INCREMENT NOT NULL,
     name varchar(255),
-    field varchar(255),
     PRIMARY KEY (subjectID)
 );
 
