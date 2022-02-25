@@ -1,9 +1,9 @@
 DROP TABLE IF EXISTS PUBLISHER;
 CREATE TABLE PUBLISHER (
-    publisherID int NOT NULL,
+    publisherID int AUTO_INCREMENT NOT NULL,
     placeOfPublication varchar(255), 
     publisherName varchar(255), 
-    publisherType varchar(255),
+    publisherType varchar(255) NULL,
     PRIMARY KEY (publisherID)
 );
 
@@ -35,7 +35,7 @@ CREATE TABLE BOOK (
 
 DROP TABLE IF EXISTS SUBJECT;
 CREATE TABLE SUBJECT (
-    subjectID int AUTO_INCREMENT NOT NULL,
+    subjectID varchar(3) NOT NULL,
     name varchar(255),
     PRIMARY KEY (subjectID)
 );
@@ -43,7 +43,7 @@ CREATE TABLE SUBJECT (
 DROP TABLE IF EXISTS BOOK_SUBJECT;
 CREATE TABLE BOOK_SUBJECT (
     bookID int NOT NULL,
-    subjectID int NOT NULL,
+    subjectID varchar(3) NOT NULL,
     PRIMARY KEY (bookID, subjectID),
     CONSTRAINT BOOK_SUBJECT_BOOK_fk FOREIGN KEY (bookID) REFERENCES BOOK (bookID),
     CONSTRAINT BOOK_SUBJECT_SUBJECT_fk FOREIGN KEY (subjectID) REFERENCES SUBJECT (subjectID)
@@ -60,7 +60,7 @@ CREATE TABLE VARIANT_TITLES (
 
 DROP TABLE IF EXISTS TYPE;
 CREATE TABLE TYPE (
-    typeID int AUTO_INCREMENT NOT NULL,
+    typeID varchar(3) NOT NULL,
     name varchar(255),
     PRIMARY KEY (typeID)
 );
@@ -68,7 +68,7 @@ CREATE TABLE TYPE (
 DROP TABLE IF EXISTS BOOK_TYPE;
 CREATE TABLE BOOK_TYPE (
     bookID int NOT NULL,
-    typeID int NOT NULL,
+    typeID varchar(3) NOT NULL,
     PRIMARY KEY (bookID, typeID),
     CONSTRAINT BOOK_TYPE_BOOK_fk FOREIGN KEY (bookID) REFERENCES BOOK (bookID),
     CONSTRAINT BOOK_TYPE_TYPE_fk FOREIGN KEY (typeID) REFERENCES TYPE (typeID)
