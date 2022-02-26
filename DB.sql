@@ -12,6 +12,7 @@ CREATE TABLE BOOK (
   bookID int(11) AUTO_INCREMENT NOT NULL, 
   title varchar(100) NOT NULL,
   publisherID int(11) NOT NULL, 
+  authorship varchar(1),
   yearNote varchar(100), 
   dateModified varchar(50), 
   descriptor varchar(255), 
@@ -96,7 +97,6 @@ DROP TABLE IF EXISTS AUTHOR;
 CREATE TABLE AUTHOR (
     authorID int AUTO_INCREMENT NOT NULL,
     name varchar(255),
-    authorship varchar(255),
     lifeYears int,
     PRIMARY KEY (authorID)
 );
