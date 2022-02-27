@@ -16,13 +16,13 @@ CREATE TABLE PUBLISHER (
 
 CREATE TABLE BOOK (
   bookID int AUTO_INCREMENT NOT NULL, 
-  title varchar(100) NOT NULL,
+  title varchar(512) NOT NULL,
   authorship varchar(1),
-  yearNote varchar(100), 
+  yearNote varchar(4), 
   lastModifiedUserID int NULL,
   dateModified varchar(50), 
-  descriptor varchar(255), 
-  note varchar(255), 
+  descriptor text, 
+  note text, 
 --   numberVolumes varchar(255), 
 --   numberPages varchar(255), 
 --   editionFormat varchar(255), 
