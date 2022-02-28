@@ -1,4 +1,4 @@
-# Milestone 2: Design and Design Patterns
+# Milestone 3: Layering
 
 
 ## Team Members and Roles
