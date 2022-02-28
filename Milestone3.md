@@ -127,35 +127,35 @@ MySQL - database
 
 **Business**
 * This layer implements the core functionality of the system, and encapsulates the relevant business logic. It generally consists of components, some of which may expose service interfaces that other callers can use. 
-    *Classes:
-        *Account.class.php
-        *AdminAccount.class.php
-        *EditorAccount.class.php
-        *ContributorAccount.class.php
-        *AccountFactory.php
-        *Validator.php
-        *Sanitizer.php
-        *BusinessRuleCheck.php
+    * Classes:
+        * Account.class.php
+        * AdminAccount.class.php
+        * EditorAccount.class.php
+        * ContributorAccount.class.php
+        * AccountFactory.php
+        * Validator.php
+        * Sanitizer.php
+        * BusinessRuleCheck.php
 
 
 **Presentation**
 * This layer contains the user oriented functionality responsible for managing user interaction with the system, and generally consists of components that provide a common bridge into the core business logic encapsulated in the business layer.
-    *Classes:
-        *Form.js
-        *Header.js
-        *Footer.js
-        *ContentDisplay.js
-        *TableDisplay.js
-        *Search.js
-        *Builder.js
-        *Memento.js
-        *Style.css
-        *Login.php
-        *Profile.php
-        *ManageAccount.php
-        *Edit.php
-        *Contribute.php
-        *Index.php
+    * Classes:
+        * Form.js
+        * Header.js
+        * Footer.js
+        * ContentDisplay.js
+        * TableDisplay.js
+        * Search.js
+        * Builder.js
+        * Memento.js
+        * Style.css
+        * Login.php
+        * Profile.php
+        * ManageAccount.php
+        * Edit.php
+        * Contribute.php
+        * Index.php
 
 
 
