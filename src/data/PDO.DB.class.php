@@ -23,8 +23,8 @@
         function genericInsert($table, $columns, $values) {
             try {
 
-                // make sure table exists
-                if (DB::columnsAreValid($columns)) {
+                // make sure table/columns exists
+                if (DB::columnsAreValid($table, $columns)) {
 
                     // build query string
                     $queryBeginning = "INSERT INTO $table (";
@@ -50,8 +50,8 @@
 
                 } else {
 
-                    //table doesn't exist
-                    throw new Exception("Couldn't find table or columns");
+                    //table/columns don't exist
+                    throw new Exception("Error with insert, couldn't find table or columns.");
 
                 }
 
@@ -81,7 +81,7 @@
                     $stmt -> execute();
 
                     // fetch result
-                    $data = $stmt -> fetchAll();
+                    $data = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
                 } else {
 
@@ -196,7 +196,7 @@
                 
                 return $data;
 
-            } catch(Exception $pdoe) {
+            } catch(Exception $e) {
                 echo $e -> getMessage();
                 return [];
                 die();
@@ -229,7 +229,7 @@
 
                 return $data;
 
-            } catch(Exception $pdoe) {
+            } catch(Exception $e) {
                 echo $e -> getMessage();
                 return [];
                 die();
@@ -279,7 +279,7 @@
                         foreach (DB::describe($table) AS $listed) {
 
                             // compare the inputed column name to the listed column name
-                            $columnExists = ($table == $listed[0]);
+                            $columnExists = ($column == $listed[0]);
 
                             // when you find the column, jump out of the loop
                             if ($columnExists) break;
@@ -297,11 +297,11 @@
                 } else {
 
                     //table doesn't exist
-                    throw new Exception("Couldn't find table");
+                    throw new Exception("Couldn't find table/columns");
                 }
 
                 return $isValid;
-            } catch(Exception $pdoe) {
+            } catch(Exception $e) {
                 echo $e -> getMessage();
                 return [];
                 die();
