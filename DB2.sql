@@ -21,6 +21,9 @@
 
 -- namedPerson[_namedPersonID_,fname,lname,nobilityTitle,lifeYears,personNote]
   -- The note entry above will include any aliases or unstructured source info about names and titles. Will this work?? (Yes)
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS NAMED_PERSON;
+SET FOREIGN_KEY_CHECKS=1;
 CREATE TABLE NAMED_PERSON (
     namedPersonID int(11) NOT NULL AUTO_INCREMENT,
     fname varchar(255),
@@ -32,6 +35,9 @@ CREATE TABLE NAMED_PERSON (
 );
 
 -- book[_bookID_,bookDescriptor,bookNote]
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS BOOK;
+SET FOREIGN_KEY_CHECKS=1;
 CREATE TABLE BOOK (
     bookID int(11) NOT NULL AUTO_INCREMENT,
     bookDescriptor text,
@@ -40,6 +46,9 @@ CREATE TABLE BOOK (
 );
 
 -- title[_titleID_,titleString]
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS TITLE;
+SET FOREIGN_KEY_CHECKS=1;
 CREATE TABLE TITLE (
     titleID int(11) NOT NULL AUTO_INCREMENT,
     titleString text,
@@ -47,6 +56,9 @@ CREATE TABLE TITLE (
 );
 
 -- type[_typeID_,typeDescription]
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS TYPE;
+SET FOREIGN_KEY_CHECKS=1;
 CREATE TABLE TYPE (
     typeID varchar(3) NOT NULL,
     typeDescription text,
@@ -54,6 +66,9 @@ CREATE TABLE TYPE (
 );
 
 -- subject[_subjectID_,subjectDescription]
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS SUBJECT;
+SET FOREIGN_KEY_CHECKS=1;
 CREATE TABLE SUBJECT (
     subjectID varchar(3) NOT NULL,
     subjectDescription text,
@@ -61,6 +76,9 @@ CREATE TABLE SUBJECT (
 );
 
 -- edition[_editionID_,editionString]
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS EDITION;
+SET FOREIGN_KEY_CHECKS=1;
 CREATE TABLE EDITION (
     editionID int(11) NOT NULL AUTO_INCREMENT,
     editionString text,
@@ -68,6 +86,9 @@ CREATE TABLE EDITION (
 );
 
 -- publisher[_publisherID_,publisherName,publisherLocation,publisherType]
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS PUBLISHER;
+SET FOREIGN_KEY_CHECKS=1;
 CREATE TABLE PUBLISHER (
     publisherID int(11) NOT NULL AUTO_INCREMENT,
     publisherName varchar(255),
@@ -77,6 +98,9 @@ CREATE TABLE PUBLISHER (
 );
 
 -- format[_formatID_,formatName]
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS FORMAT;
+SET FOREIGN_KEY_CHECKS=1;
 CREATE TABLE FORMAT (
     formatID int(11) NOT NULL AUTO_INCREMENT,
     formatName varchar(255),
@@ -85,6 +109,9 @@ CREATE TABLE FORMAT (
 
 -- agreement[_agreementTypeID_,agreementTypeName,agreementTypeNote]
   -- agreementTypeNote contains whatever a person who checks "other" specifies
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS AGREEMENT;
+SET FOREIGN_KEY_CHECKS=1;
 CREATE TABLE AGREEMENT (
     agreementTypeID int(11) NOT NULL AUTO_INCREMENT,
     agreementTypeName varchar(255),
@@ -93,34 +120,46 @@ CREATE TABLE AGREEMENT (
 );
 
 -- author[_*namedPersonID*_,_*bookID*_]
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS AUTHOR;
+SET FOREIGN_KEY_CHECKS=1;
 CREATE TABLE AUTHOR (
     namedPersonID int(11) NOT NULL,
     bookID int(11) NOT NULL,
     PRIMARY KEY(namedPersonID, bookID),
-    CONSTRAINT AUTHOR_NAMED_PERSON_fk FOREIGN KEY (namedPersonID) REFERENCES NAMED_PERSON (namedPersonID),
-    CONSTRAINT AUTHOR_BOOK_fk FOREIGN KEY (bookID) REFERENCES BOOK (bookID)
+    CONSTRAINT AUTHOR_NAMED_PERSON_fk FOREIGN KEY (namedPersonID) REFERENCES NAMED_PERSON (namedPersonID) ON DELETE CASCADE,
+    CONSTRAINT AUTHOR_BOOK_fk FOREIGN KEY (bookID) REFERENCES BOOK (bookID) ON DELETE CASCADE
 );
 
 -- editor[_*namedPersonID*_,_*bookID*_]
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS EDITOR;
+SET FOREIGN_KEY_CHECKS=1;
 CREATE TABLE EDITOR (
     namedPersonID int(11) NOT NULL,
     bookID int(11) NOT NULL,
     PRIMARY KEY(namedPersonID, bookID),
-    CONSTRAINT EDITOR_NAMED_PERSON_fk FOREIGN KEY (namedPersonID) REFERENCES NAMED_PERSON (namedPersonID),
-    CONSTRAINT EDITOR_BOOK_fk FOREIGN KEY (bookID) REFERENCES BOOK (bookID)
+    CONSTRAINT EDITOR_NAMED_PERSON_fk FOREIGN KEY (namedPersonID) REFERENCES NAMED_PERSON (namedPersonID) ON DELETE CASCADE,
+    CONSTRAINT EDITOR_BOOK_fk FOREIGN KEY (bookID) REFERENCES BOOK (bookID) ON DELETE CASCADE
 );
 
 -- translator[_*namedPersonID*_,_*bookID*_]
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS TRANSLATOR;
+SET FOREIGN_KEY_CHECKS=1;
 CREATE TABLE TRANSLATOR (
     namedPersonID int(11) NOT NULL,
     bookID int(11) NOT NULL,
     PRIMARY KEY(namedPersonID, bookID),
-    CONSTRAINT TRANSLATOR_NAMED_PERSON_fk FOREIGN KEY (namedPersonID) REFERENCES NAMED_PERSON (namedPersonID),
-    CONSTRAINT TRANSLATOR_BOOK_fk FOREIGN KEY (bookID) REFERENCES BOOK (bookID)
+    CONSTRAINT TRANSLATOR_NAMED_PERSON_fk FOREIGN KEY (namedPersonID) REFERENCES NAMED_PERSON (namedPersonID) ON DELETE CASCADE,
+    CONSTRAINT TRANSLATOR_BOOK_fk FOREIGN KEY (bookID) REFERENCES BOOK (bookID) ON DELETE CASCADE
 );
 
 -- bookEdition[_*bookID*_,_*editionID*_,_*publisherID*_,*titleID*,*formatID*,year,yearNote,numberPages,numberVolumes,*agreementTypeID*,salePrice,paymentAgreedAmount,illustrations,illustrationsPayment,copiesSold,copiesRemaining,profitLoss,proceedsAuthor,formatNote]
   -- formatNote contains whatever a person who checks "other" for formatID specifies
+  SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS BOOK_EDITION;
+SET FOREIGN_KEY_CHECKS=1;
 CREATE TABLE BOOK_EDITION (
     bookID int(11) NOT NULL,
     editionID int(11) NOT NULL,
@@ -141,34 +180,40 @@ CREATE TABLE BOOK_EDITION (
     proceedsAuthor DECIMAL(10,2),
     formatNote text,
     PRIMARY KEY(bookID, editionID, publisherID),
-    CONSTRAINT BOOK_EDITION_BOOK_fk FOREIGN KEY (bookID) REFERENCES BOOK (bookID),
-    CONSTRAINT BOOK_EDITION_EDITION_fk FOREIGN KEY (editionID) REFERENCES EDITION (editionID),
-    CONSTRAINT BOOK_EDITION_PUBLISHER_fk FOREIGN KEY (publisherID) REFERENCES PUBLISHER (publisherID),
-    CONSTRAINT BOOK_EDITION_TITLE_fk FOREIGN KEY (titleID) REFERENCES TITLE (titleID),
-    CONSTRAINT BOOK_EDITION_FORMAT_fk FOREIGN KEY (formatID) REFERENCES FORMAT (formatID),
-    CONSTRAINT BOOK_EDITION_AGREEMENT_fk FOREIGN KEY (agreementTypeID) REFERENCES AGREEMENT (agreementTypeID)
+    CONSTRAINT BOOK_EDITION_BOOK_fk FOREIGN KEY (bookID) REFERENCES BOOK (bookID) ON DELETE CASCADE,
+    CONSTRAINT BOOK_EDITION_EDITION_fk FOREIGN KEY (editionID) REFERENCES EDITION (editionID) ON DELETE CASCADE,
+    CONSTRAINT BOOK_EDITION_PUBLISHER_fk FOREIGN KEY (publisherID) REFERENCES PUBLISHER (publisherID) ON DELETE CASCADE,
+    CONSTRAINT BOOK_EDITION_TITLE_fk FOREIGN KEY (titleID) REFERENCES TITLE (titleID) ON DELETE CASCADE,
+    CONSTRAINT BOOK_EDITION_FORMAT_fk FOREIGN KEY (formatID) REFERENCES FORMAT (formatID) ON DELETE CASCADE,
+    CONSTRAINT BOOK_EDITION_AGREEMENT_fk FOREIGN KEY (agreementTypeID) REFERENCES AGREEMENT (agreementTypeID) ON DELETE CASCADE
 );
 
 -- bookType[_*bookID*_,_*typeID*_,bookTypeNote]
   -- bookTypeNote contains whatever a person who checks "other" specifies
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS BOOK_TYPE;
+SET FOREIGN_KEY_CHECKS=1;
 CREATE TABLE BOOK_TYPE (
     bookID int(11) NOT NULL,
     typeID varchar(3) NOT NULL,
     bookTypeNote text,
     PRIMARY KEY(bookID, typeID),
-    CONSTRAINT BOOK_TYPE_BOOK_fk FOREIGN KEY (bookID) REFERENCES BOOK (bookID),
-    CONSTRAINT BOOK_TYPE_TYPE_fk FOREIGN KEY (typeID) REFERENCES TYPE (typeID)
+    CONSTRAINT BOOK_TYPE_BOOK_fk FOREIGN KEY (bookID) REFERENCES BOOK (bookID) ON DELETE CASCADE,
+    CONSTRAINT BOOK_TYPE_TYPE_fk FOREIGN KEY (typeID) REFERENCES TYPE (typeID) ON DELETE CASCADE
 );
 
 -- bookSubject[_*bookID*_,_*subjectID*_,bookSubjectNote]
   -- bookTypeNote contains whatever a person who checks "other" specifies
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS BOOK_SUBJECT;
+SET FOREIGN_KEY_CHECKS=1;
 CREATE TABLE BOOK_SUBJECT (
     bookID int(11) NOT NULL,
     subjectID varchar(3) NOT NULL,
     bookSubjectNote text,
     PRIMARY KEY(bookID, subjectID),
-    CONSTRAINT BOOK_SUBJECT_BOOK_fk FOREIGN KEY (bookID) REFERENCES BOOK (bookID),
-    CONSTRAINT BOOK_SUBJECT_SUBJECT_fk FOREIGN KEY (subjectID) REFERENCES SUBJECT (subjectID)
+    CONSTRAINT BOOK_SUBJECT_BOOK_fk FOREIGN KEY (bookID) REFERENCES BOOK (bookID) ON DELETE CASCADE,
+    CONSTRAINT BOOK_SUBJECT_SUBJECT_fk FOREIGN KEY (subjectID) REFERENCES SUBJECT (subjectID) ON DELETE CASCADE
 );
 
 -- # Values
@@ -403,5 +448,3 @@ INSERT INTO BOOK_EDITION
     (bookID, editionID, publisherID, titleID, formatID, year, numberPages, numberVolumes, agreementTypeID, salePrice, paymentAgreedAmount, illustrationsPayment, copiesSold, copiesRemaining, profitLoss, proceedsAuthor, formatNote) 
     VALUES 
     (10, 1, 4, 10, 5, 1818, null, 1, 5, null, null, null, 716, 34, null, null, null);
-    
-
