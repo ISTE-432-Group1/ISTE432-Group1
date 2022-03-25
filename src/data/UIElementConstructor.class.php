@@ -46,4 +46,21 @@
             return $html;
         }
 
+        // UPDATE FORM - builds form of updates containing column names
+        // table - data is modifying 
+        // columns - column names being inserted
+        // value - values in columns named by 
+        // to fill field automatically, use atrribute called placeholder='' (single quotes bc you're in a string with double    quotes)
+        function buildUpdateForm($table, $columns, $value) {
+            $html = "<h3>Update table data</h3>\n<form action='./ExceptionTestUI.php' method='POST'>\n<input type='hidden' name='#tableInUse' value='$table'>";
+            foreach($columns AS $column) {
+                if (!(strpos($column['Extra'], 'auto_increment') !== false)) {
+                    // name ($column[0]) controls the key
+                    $html .= "<label for='" . $column[0] . "'>" . $column[0] . "</label>\n<input type='text id='" . $column[0] . "' name='" . $column[0] . "'value='" . $value[0] . "'><br />\n";
+                }
+            }
+            $html .= "<input type='submit' value='insert'>\n</form>";
+            return $html;
+        }
+
     }
