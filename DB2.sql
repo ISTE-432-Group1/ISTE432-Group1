@@ -1,5 +1,5 @@
-CREATE DATABASE `ISTE432pt2` ;
-USE `ISTE432pt2` ;
+-- CREATE DATABASE `ISTE432pt2` ;
+-- USE `ISTE432pt2` ;
 
 
 -- TODO:
@@ -12,7 +12,7 @@ USE `ISTE432pt2` ;
         -- CONSTRAINT a_b_fk FOREIGN KEY (aattribute) REFERENCES b (battribute)
 -- [DONE]- Reorganized order of tables loaded in
 -- [DONE]- Create values listed at bottom
--- [DONE]- Make dummy records (5-10)
+-- []- Make dummy records (5-10)
 -- []- Remove random comments from this file
 -- []- Load into Solace / whatever Ben made the connection for
 -- []- Make a user table [id, username, password, etc.]
@@ -231,31 +231,31 @@ INSERT INTO SUBJECT (subjectID, subjectDescription) VALUES ("t", "travel");
 -- th, theatre
 INSERT INTO SUBJECT (subjectID, subjectDescription) VALUES ("th", "theatre");
 
-## formatName
+## formatName  
 
 -- 4to
-INSERT INTO FORMAT (formatName) VALUE ("4to"); -- 1
+INSERT INTO FORMAT (formatID,formatName) VALUE (1, "4to"); -- 1
 -- 8vo
-INSERT INTO FORMAT (formatName) VALUE ("8vo"); -- 2
+INSERT INTO FORMAT (formatID,formatName) VALUE (2, "8vo"); -- 2
 -- 12mo
-INSERT INTO FORMAT (formatName) VALUE ("12mo"); -- 3
+INSERT INTO FORMAT (formatID,formatName) VALUE (3, "12mo"); -- 3
 -- 24mo
-INSERT INTO FORMAT (formatName) VALUE ("24mo"); -- 4
+INSERT INTO FORMAT (formatID,formatName) VALUE (4, "24mo"); -- 4
 -- other
-INSERT INTO FORMAT (formatName) VALUE ("other"); -- 5
+INSERT INTO FORMAT (formatID,formatName) VALUE (5, "other"); -- 5
 
 ## agreementTypeName
 
 -- half profits
-INSERT INTO AGREEMENT (agreementTypeName) VALUE ("half profits"); -- 1
+INSERT INTO AGREEMENT (agreementTypeID, agreementTypeName) VALUE (1, "half profits"); -- 1
 -- payment for copyright
-INSERT INTO AGREEMENT (agreementTypeName) VALUE ("payment for copyright"); -- 2
+INSERT INTO AGREEMENT (agreementTypeID, agreementTypeName) VALUE (2, "payment for copyright"); -- 2
 -- at risk
-INSERT INTO AGREEMENT (agreementTypeName) VALUE ("at risk"); -- 3
+INSERT INTO AGREEMENT (agreementTypeID, agreementTypeName) VALUE (3, "at risk"); -- 3
 -- costs paid by author
-INSERT INTO AGREEMENT (agreementTypeName) VALUE ("costs paid by author"); -- 4
+INSERT INTO AGREEMENT (agreementTypeID, agreementTypeName) VALUE (4, "costs paid by author"); -- 4
 -- other
-INSERT INTO AGREEMENT (agreementTypeName) VALUE ("other"); -- 5
+INSERT INTO AGREEMENT (agreementTypeID, agreementTypeName) VALUE (5, "other"); -- 5
 
 
 -- Book 1
@@ -302,7 +302,7 @@ INSERT INTO BOOK_EDITION
     (bookID, editionID, publisherID, titleID, formatID, year, numberPages, numberVolumes, agreementTypeID, salePrice, paymentAgreedAmount, illustrationsPayment, copiesSold, copiesRemaining, profitLoss, proceedsAuthor, formatNote) 
     VALUES 
     (3, 1, 3, 3, 5, null, null, 1, 5, null, null, null, null, null, null, null, null);
-
+    
 -- Book 4
 INSERT INTO BOOK (bookID, bookDescriptor, bookNote) VALUES (4, "edition of 500 on half-profits, and only 477 sold; netted Murray and author each 8.9.2", null);
 INSERT INTO BOOK_TYPE (bookID, typeID, bookTypeNote) VALUES (4, "b", null);
@@ -317,7 +317,7 @@ INSERT INTO BOOK_EDITION
     (bookID, editionID, publisherID, titleID, formatID, year, numberPages, numberVolumes, agreementTypeID, salePrice, paymentAgreedAmount, illustrationsPayment, copiesSold, copiesRemaining, profitLoss, proceedsAuthor, formatNote) 
     VALUES 
     (4, 2, 4, 4, 5, 1816, null, null, 1, null, 8.92, null, 477, null, null, null, null);
-
+    
 -- Book 5
 INSERT INTO BOOK (bookID, bookDescriptor, bookNote) VALUES (5, "edition of 750 copies priced at 14s.9d or 13s, of which 680 sold; half-profits for Murray gave him and author each 136.15.11 by April 1817; no record in BLIC and only WC record is an edition in Philadelphia and an edition described as 'London: Printed for Sir Richard Phillips...'; published again in 1818 with this information: appears to be 1 vol quarto selling at 1.11.0 or 1.14.0, but hard to tell because there are '2nd editions' listed for Buckhardts 'Nubia' and Buckhardts 'Syria' at the close of the accounting for 'Travels'; so it may have been 2 vols initially, then retitled for new editions in 1822; for 1st edition, appears to have paid 200l to the author and still cleared 515.1.9 by selling 918 copies of the 1000-copy edition; cleared another 37.1.6 from sales of 476 of 500 in the 2nd edition of 'Nubia' and 218.10.11 from sales of 930 of 1000 of the 1st edition of 'Syria'; an edition of a 3rd volume of work from Burkhardt was never published and therefore goes down as a 25l loss for Murray", null);
 INSERT INTO BOOK_TYPE (bookID, typeID, bookTypeNote) VALUES (5, "c", null);
@@ -343,9 +343,9 @@ INSERT INTO PUBLISHER (publisherID, publisherName, publisherLocation) VALUES (5,
 INSERT INTO BOOK_EDITION 
     (bookID, editionID, publisherID, titleID, formatID, year, numberPages, numberVolumes, agreementTypeID, salePrice, paymentAgreedAmount, illustrationsPayment, copiesSold, copiesRemaining, profitLoss, proceedsAuthor, formatNote) 
     VALUES 
-    (6, 1, 5, 6, 5, 1817, null, 500, 1, null, null, null, null, null, null, null, null);
-
--- Book 7 
+    (6, 1, 5, 6, 5, 1817, null, 500, 1, null, null, null, 680, 70, null, null, null);
+    
+-- Book 7
 INSERT INTO BOOK (bookID, bookDescriptor, bookNote) VALUES (7, "1 vol; 3500 copies printed in 2 editions (of 1750); price 1.12.6; 2360 were sold 1817-1820 and thus yielded 1/3 shares of 135.7.10 each to Hall, Murray, and Lt. Clifford (whoever that is); a 3rd edition (of 1500) was tried in 1819 with Murray eventually selling them off at 4/8, then 4/11 to recover his money and show a modest profit on it", null);
 INSERT INTO BOOK_TYPE (bookID, typeID, bookTypeNote) VALUES (7, "a", null);
 INSERT INTO BOOK_SUBJECT (bookID, subjectID, bookSubjectNote) VALUES (7, "t", null);
@@ -363,7 +363,7 @@ INSERT INTO BOOK_EDITION
     (bookID, editionID, publisherID, titleID, formatID, year, numberPages, numberVolumes, agreementTypeID, salePrice, paymentAgreedAmount, illustrationsPayment, copiesSold, copiesRemaining, profitLoss, proceedsAuthor, formatNote) 
     VALUES 
     (7, 4, 4, 7, 5, 1817, null, 1, 5, null, null, null, null, null, null, null, null);
-
+    
 -- Book 8
 INSERT INTO BOOK (bookID, bookDescriptor, bookNote) VALUES (8, "1 vol 8vo; first edition of 1250 in Oct 1817 sold by March 1818; 2nd edition of 3500 printed in December 1817; Murray and the author each took half profits of 89.0.11 and a halfpenny; 3rd edition of 3000 printed in 1819 and finally disposed of in 1819 for a total of 218.6.8, leaving a loss on the third edition of 458.11.10, which means that after hawking this book for five years, Murray overreached and turned no profit.", null);
 INSERT INTO BOOK_TYPE (bookID, typeID, bookTypeNote) VALUES (8, "a", null);
@@ -376,7 +376,7 @@ INSERT INTO BOOK_EDITION
     (bookID, editionID, publisherID, titleID, formatID, year, numberPages, numberVolumes, agreementTypeID, salePrice, paymentAgreedAmount, illustrationsPayment, copiesSold, copiesRemaining, profitLoss, proceedsAuthor, formatNote) 
     VALUES 
     (8, 1, 4, 8, 5, 1817, null, 8, 5, null, null, null, null, null, null, null, null);
-
+    
 -- Book 9
 INSERT INTO BOOK (bookID, bookDescriptor, bookNote) VALUES (9, "1 vol, edition of 750; paid 500l for the copyright and sold 718 copies; managed to produce a profit of 96.6.2 by July 1820", null);
 INSERT INTO BOOK_TYPE (bookID, typeID, bookTypeNote) VALUES (9, "a", null);
@@ -391,7 +391,7 @@ INSERT INTO BOOK_EDITION
     (bookID, editionID, publisherID, titleID, formatID, year, numberPages, numberVolumes, agreementTypeID, salePrice, paymentAgreedAmount, illustrationsPayment, copiesSold, copiesRemaining, profitLoss, proceedsAuthor, formatNote) 
     VALUES 
     (9, 1, 4, 9, 5, 1818, null, 1, 5, 5, null, null, 718, null, null, null, null);
-
+    
 -- Book 10
 INSERT INTO BOOK (bookID, bookDescriptor, bookNote) VALUES (10, "1 vol; edition of 750 of which 716 sold; Murray paid 20l to the author and cleared 11.14.9 himself", null);
 INSERT INTO BOOK_TYPE (bookID, typeID, bookTypeNote) VALUES (10, "a", null);
@@ -403,3 +403,5 @@ INSERT INTO BOOK_EDITION
     (bookID, editionID, publisherID, titleID, formatID, year, numberPages, numberVolumes, agreementTypeID, salePrice, paymentAgreedAmount, illustrationsPayment, copiesSold, copiesRemaining, profitLoss, proceedsAuthor, formatNote) 
     VALUES 
     (10, 1, 4, 10, 5, 1818, null, 1, 5, null, null, null, 716, 34, null, null, null);
+    
+
