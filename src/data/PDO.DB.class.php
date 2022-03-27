@@ -1,5 +1,7 @@
 <?php
 
+    require_once "./validations.php";
+
     class DB {
 
         // attr
@@ -21,10 +23,15 @@
 
         // insert into db
         function genericInsert($table, $columns, $values) {
+
             try {
 
                 // make sure table/columns exists
                 if (DB::columnsAreValid($table, $columns)) {
+
+                    // function for error checking gets called here
+                    errorChecking($table, $columns, $values);
+                    exit;
 
                     // build query string
                     $queryBeginning = "INSERT INTO $table (";
@@ -307,6 +314,139 @@
                 die();
             }
         }
+    }
+
+
+    function errorChecking($table, $columns, $values){
+        // error checking here!
+        var_dump($values);
+
+        // [DONE] `agreement`, 
+        if($table == "agreement"){
+            // `agreementTypeID`, --> not provided by user
+            // `agreementTypeName`, --> $values[0]
+            $agreementTypeName = trim($values[0]);
+            if($agreementTypeName == "" || strlen($agreementTypeName) > 255 || sqlMetaChars($agreementTypeName) || sqlInjection($agreementTypeName) || sqlInjectionUnion($agreementTypeName) || sqlInjectionSelect($agreementTypeName) || sqlInjectionInsert($agreementTypeName) || sqlInjectionDelete($agreementTypeName) || sqlInjectionUpdate($agreementTypeName) || sqlInjectionDrop($agreementTypeName) || crossSiteScripting($agreementTypeName) || crossSiteScriptingImg($agreementTypeName)){
+                return "Error: agreementTypeName entered not valid.";
+            }
+            // `agreementTypeNote` --> $values[1]
+            $agreementTypeNote = trim($values[1]);
+            if(strlen($agreementTypeNote) > 255 || sqlMetaChars($agreementTypeNote) || sqlInjection($agreementTypeNote) || sqlInjectionUnion($agreementTypeNote) || sqlInjectionSelect($agreementTypeNote) || sqlInjectionInsert($agreementTypeNote) || sqlInjectionDelete($agreementTypeNote) || sqlInjectionUpdate($agreementTypeNote) || sqlInjectionDrop($agreementTypeNote) || crossSiteScripting($agreementTypeNote) || crossSiteScriptingImg($agreementTypeNote)){
+                return "Error: agreementTypeNote entered not valid.";
+            }
+        }
+        // [DONE] `author`, 
+        if($table == "author"){
+            // `namedPersonID`, --> $values[0]
+            $namedPersonID = trim($values[0]);
+            if(!(integer(intval($namedPersonID)) && intval($namedPersonID) > 0) || $namedPersonID == ""){
+                return "Error: namedPersonID entered not valid.";
+            }
+            // `bookID` --> $values[1]
+            $bookID = trim($values[1]);
+            if(!(integer(intval($bookID)) && intval($bookID) > 0) || $bookID == ""){
+                return "Error: bookID entered not valid.";
+            }
+        }
+        // [DONE] `book`, 
+        if($table == "book"){
+            // `bookDescriptor`,
+            $bookDescriptor = trim($values[0]);
+            if(sqlMetaChars($bookDescriptor) || sqlInjection($bookDescriptor) || sqlInjectionUnion($bookDescriptor) || sqlInjectionSelect($bookDescriptor) || sqlInjectionInsert($bookDescriptor) || sqlInjectionDelete($bookDescriptor) || sqlInjectionUpdate($bookDescriptor) || sqlInjectionDrop($bookDescriptor) || crossSiteScripting($bookDescriptor) || crossSiteScriptingImg($bookDescriptor)){
+                return "Error: bookDescriptor entered not valid.";
+            }
+            // `bookNote`
+            $bookNote = trim($values[1]);
+            if(sqlMetaChars($bookNote) || sqlInjection($bookNote) || sqlInjectionUnion($bookNote) || sqlInjectionSelect($bookNote) || sqlInjectionInsert($bookNote) || sqlInjectionDelete($bookNote) || sqlInjectionUpdate($bookNote) || sqlInjectionDrop($bookNote) || crossSiteScripting($bookNote) || crossSiteScriptingImg($bookNote)){
+                return "Error: bookNote entered not valid.";
+            }
+        }
+        // [~~YUCK!~~] `book_edition`,
+        if($table == "book_edition"){}
+        // [DONE] `book_subject`,
+        if($table == "book_subject`"){
+            // `bookID`,
+            $bookID = trim($values[0]);
+            if(!(integer(intval($bookID)) && intval($bookID) > 0) || $bookID == ""){
+                return "Error: bookID entered not valid.";
+            }
+            // `subjectID`,
+            $subjectID = trim($values[1]);
+            if(!(alphabetic($subjectID)) || $subjectID == "" || strlen($subjectID) > 3 || sqlMetaChars($subjectID) || sqlInjection($subjectID) || sqlInjectionUnion($subjectID) || sqlInjectionSelect($subjectID) || sqlInjectionInsert($subjectID) || sqlInjectionDelete($subjectID) || sqlInjectionUpdate($subjectID) || sqlInjectionDrop($subjectID) || crossSiteScripting($subjectID) || crossSiteScriptingImg($subjectID)){
+                return "Error: subjectID entered not valid.";
+            }
+            // `bookSubjectNote`
+            $bookSubjectNote = trim($values[2]);
+            if(sqlMetaChars($bookSubjectNote) || sqlInjection($bookSubjectNote) || sqlInjectionUnion($bookSubjectNote) || sqlInjectionSelect($bookSubjectNote) || sqlInjectionInsert($bookSubjectNote) || sqlInjectionDelete($bookSubjectNote) || sqlInjectionUpdate($bookSubjectNote) || sqlInjectionDrop($bookSubjectNote) || crossSiteScripting($bookSubjectNote) || crossSiteScriptingImg($bookSubjectNote)){
+                return "Error: bookSubjectNote entered not valid.";
+            }
+        }
+        // [DONE] `book_type`,
+        if($table == "book_type`"){
+            // `bookID`,
+            $bookID = trim($values[0]);
+            if(integer(intval($bookID)) && intval($bookID) > 0){
+                return "Error: bookID entered not valid.";
+            }
+            // `typeID`,
+            $typeID = trim($values[1]);
+            if(!(alphabetic($typeID)) || $typeID == "" || strlen($typeID) > 3 || sqlMetaChars($typeID) || sqlInjection($typeID) || sqlInjectionUnion($typeID) || sqlInjectionSelect($typeID) || sqlInjectionInsert($typeID) || sqlInjectionDelete($typeID) || sqlInjectionUpdate($typeID) || sqlInjectionDrop($typeID) || crossSiteScripting($typeID) || crossSiteScriptingImg($typeID)){
+                return "Error: typeID entered not valid.";
+            }
+            // `bookTypeNote`
+            $bookTypeNote = trim($values[2]);
+            if(sqlMetaChars($bookTypeNote) || sqlInjection($bookTypeNote) || sqlInjectionUnion($bookTypeNote) || sqlInjectionSelect($bookTypeNote) || sqlInjectionInsert($bookTypeNote) || sqlInjectionDelete($bookTypeNote) || sqlInjectionUpdate($bookTypeNote) || sqlInjectionDrop($bookTypeNote) || crossSiteScripting($bookTypeNote) || crossSiteScriptingImg($bookTypeNote)){
+                return "Error: bookTypeNote entered not valid.";
+            }
+        }
+        // [DONE] `edition`,
+        if($table == "edition`"){
+            // `editionString`,
+            $editionString = trim($values[1]);
+            if($editionString == "" || sqlMetaChars($editionString) || sqlInjection($editionString) || sqlInjectionUnion($editionString) || sqlInjectionSelect($editionString) || sqlInjectionInsert($editionString) || sqlInjectionDelete($editionString) || sqlInjectionUpdate($editionString) || sqlInjectionDrop($editionString) || crossSiteScripting($editionString) || crossSiteScriptingImg($editionString)){
+                return "Error: editionString entered not valid.";
+            }
+        }
+        // [DONE] `editor`,
+        if($table == "editor`"){
+            // `namedPersonID`, --> $values[0]
+            $namedPersonID = trim($values[0]);
+            if(!(integer(intval($namedPersonID)) && intval($namedPersonID) > 0) || $namedPersonID == ""){
+                return "Error: namedPersonID entered not valid.";
+            }
+            // bookID
+            $bookID = trim($values[1]);
+            if(!(integer(intval($bookID)) && intval($bookID) > 0) || $bookID == ""){
+                return "Error: bookID entered not valid.";
+            }
+        }
+        // [DONE] `format`,
+        if($table == "format"){
+            // `formatID`, --> $values[0]
+            $formatID = trim($values[0]);
+            if(!(integer(intval($formatID)) && intval($formatID) > 0) || $formatID == ""){
+                return "Error: formatID entered not valid.";
+            }
+            // `formatName` --> $values[1]
+            $formatName = trim($values[1]);
+            if($formatName == "" || strlen($formatName) > 255 || sqlMetaChars($formatName) || sqlInjection($formatName) || sqlInjectionUnion($formatName) || sqlInjectionSelect($formatName) || sqlInjectionInsert($formatName) || sqlInjectionDelete($formatName) || sqlInjectionUpdate($formatName) || sqlInjectionDrop($formatName) || crossSiteScripting($formatName) || crossSiteScriptingImg($formatName)){
+                return "Error: formatName entered not valid.";
+            }
+        }
+        // [] `named_person`,
+        if($table == "named_person`"){}
+        // [] `publisher`,
+        if($table == "publisher`"){}
+        // [] `subject`,
+        if($table == "subject`"){}
+        // [] `title`,
+        if($table == "title`"){}
+        // [] `translator`,
+        if($table == "translator`"){}
+        // [] `type`
+        if($table == "type"){}
+
+        // end of error checking
     }
 
 // don't close php tag
