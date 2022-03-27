@@ -33,8 +33,10 @@
 
                     // function for error checking gets called here
                     $statement = errorChecking($table, $columns, $values);
-                    echo $statement;
-                    exit;
+                    if(substr($statement, 0, 6) == "Error:"){
+                        echo $statement;
+                        exit;
+                    }
 
                     // build query string
                     $queryBeginning = "INSERT INTO $table (";
