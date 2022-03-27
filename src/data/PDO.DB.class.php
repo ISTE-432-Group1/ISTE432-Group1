@@ -364,7 +364,7 @@
         // [~~YUCK!~~] `book_edition`,
         if($table == "book_edition"){}
         // [DONE] `book_subject`,
-        if($table == "book_subject`"){
+        if($table == "book_subject"){
             // `bookID`,
             $bookID = trim($values[0]);
             if(!(integer(intval($bookID)) && intval($bookID) > 0) || $bookID == ""){
@@ -382,7 +382,7 @@
             }
         }
         // [DONE] `book_type`,
-        if($table == "book_type`"){
+        if($table == "book_type"){
             // `bookID`,
             $bookID = trim($values[0]);
             if(integer(intval($bookID)) && intval($bookID) > 0){
@@ -400,7 +400,7 @@
             }
         }
         // [DONE] `edition`,
-        if($table == "edition`"){
+        if($table == "edition"){
             // `editionString`,
             $editionString = trim($values[1]);
             if($editionString == "" || sqlMetaChars($editionString) || sqlInjection($editionString) || sqlInjectionUnion($editionString) || sqlInjectionSelect($editionString) || sqlInjectionInsert($editionString) || sqlInjectionDelete($editionString) || sqlInjectionUpdate($editionString) || sqlInjectionDrop($editionString) || crossSiteScripting($editionString) || crossSiteScriptingImg($editionString)){
@@ -408,7 +408,7 @@
             }
         }
         // [DONE] `editor`,
-        if($table == "editor`"){
+        if($table == "editor"){
             // `namedPersonID`, --> $values[0]
             $namedPersonID = trim($values[0]);
             if(!(integer(intval($namedPersonID)) && intval($namedPersonID) > 0) || $namedPersonID == ""){
@@ -433,16 +433,44 @@
                 return "Error: formatName entered not valid.";
             }
         }
-        // [] `named_person`,
-        if($table == "named_person`"){}
-        // [] `publisher`,
-        if($table == "publisher`"){}
-        // [] `subject`,
-        if($table == "subject`"){}
-        // [] `title`,
-        if($table == "title`"){}
+        // [~~YUCK!~~] `named_person`,
+        if($table == "named_person"){}
+        // [DONE] `publisher`,
+        if($table == "publisher"){
+            // `publisherName`,
+            $publisherName = trim($values[0]);
+            if(strlen($publisherName) > 255 || sqlMetaChars($publisherName) || sqlInjection($publisherName) || sqlInjectionUnion($publisherName) || sqlInjectionSelect($publisherName) || sqlInjectionInsert($publisherName) || sqlInjectionDelete($publisherName) || sqlInjectionUpdate($publisherName) || sqlInjectionDrop($publisherName) || crossSiteScripting($publisherName) || crossSiteScriptingImg($publisherName)){
+                return "Error: publisherName entered not valid.";
+            }
+            // `publisherLocation`
+            $publisherLocation = trim($values[1]);
+            if(strlen($publisherLocation) > 255 || sqlMetaChars($publisherLocation) || sqlInjection($publisherLocation) || sqlInjectionUnion($publisherLocation) || sqlInjectionSelect($publisherLocation) || sqlInjectionInsert($publisherLocation) || sqlInjectionDelete($publisherLocation) || sqlInjectionUpdate($publisherLocation) || sqlInjectionDrop($publisherLocation) || crossSiteScripting($publisherLocation) || crossSiteScriptingImg($publisherLocation)){
+                return "Error: publisherLocation entered not valid.";
+            }
+
+            if($publisherName == "" && $publisherLocation == ""){
+                return "Error: publisherName and publisherLocation cannot both be blank.";
+            }
+        }
+        // [DONE] `subject`,
+        if($table == "subject"){
+            // `subjectID`,
+            $subjectID = trim($values[0]);
+            if(!(alphabetic($subjectID)) || $subjectID == "" || strlen($subjectID) > 3 || sqlMetaChars($subjectID) || sqlInjection($subjectID) || sqlInjectionUnion($subjectID) || sqlInjectionSelect($subjectID) || sqlInjectionInsert($subjectID) || sqlInjectionDelete($subjectID) || sqlInjectionUpdate($subjectID) || sqlInjectionDrop($subjectID) || crossSiteScripting($subjectID) || crossSiteScriptingImg($subjectID)){
+                return "Error: subjectID entered not valid.";
+            }
+            // `subjectDescription`
+            $subjectDescription = trim($values[1]);
+            if($subjectDescription == "" || sqlMetaChars($subjectDescription) || sqlInjection($subjectDescription) || sqlInjectionUnion($subjectDescription) || sqlInjectionSelect($subjectDescription) || sqlInjectionInsert($subjectDescription) || sqlInjectionDelete($subjectDescription) || sqlInjectionUpdate($subjectDescription) || sqlInjectionDrop($subjectDescription) || crossSiteScripting($subjectDescription) || crossSiteScriptingImg($subjectDescription)){
+                return "Error: subjectDescription entered not valid.";
+            }
+        }
+        // [W.I.P.] `title`,
+        if($table == "title"){
+            
+        }
         // [] `translator`,
-        if($table == "translator`"){}
+        if($table == "translator"){}
         // [] `type`
         if($table == "type"){}
 
