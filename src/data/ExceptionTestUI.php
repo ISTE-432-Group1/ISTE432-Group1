@@ -15,22 +15,12 @@
             echo $elementConstructor -> createTableSelect($dbh -> showTables());
             // testing read method
             if(isset($_POST['table'])) {
-                $data = $dbh -> genericFetch($_POST['table']);
-                echo $elementConstructor -> buildTable($data);
-                $data = $dbh -> describe($_POST['table']);
-                echo $elementConstructor -> buildInsertForm($_POST['table'], $data);
-            } else if (isset($_POST['#tableInUse'])) {
-                $tableName = $_POST['#tableInUse'];
-                unset($_POST['#tableInUse']);
-                $columns = [];
-                $values = [];
-                foreach($_POST AS $column => $value) {
-                    $columns[] = $column;
-                    $values[] = $value;
-                }
-
-                echo " Row inserted: {$dbh -> genericInsert($tableName, $columns, $values)}";
-            }
+                echo "<h2>Table: {$_POST['table']}</h2>";
+                $select = $dbh -> genericFetch($_POST['table']);
+                $describe = $dbh -> describe($_POST['table']);
+                echo $elementConstructor -> buildInteractiveTable($select, $describe);
+                // echo var_dump($dbh -> describe($_POST['table']));
+            } 
         ?>
     </body>
 </html>

@@ -52,14 +52,14 @@
 
                     //table/columns don't exist
                     throw new Exception("Error with insert, couldn't find table or columns.");
-
+                    return false;
                 }
 
-                return $this -> dbh -> lastInsertId();
+                return true;
 
             } catch(Exception $e) {
                 echo $e -> getMessage();
-                return -1;
+                return false;
                 die();
             }
         }
