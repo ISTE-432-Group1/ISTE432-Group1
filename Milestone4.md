@@ -158,6 +158,17 @@ MySQL - database
         * Index.php
 
 
+## Exception Handling
+Considering the layered architecture of our project, we have decided to place exception handling in our data layer. We will have a class called PDO.DB.class.php that will handle these exceptions as well as input validation and sanitization. The responsibility of handling and modifying the exceptions will be that of the database administrator. Some of the exceptions we are handling on our project currently are the following:
+* Inserting into a table errors
+* Locating tables to insert into errors
+* Deleting table errors
+* Selecting table errors
+* Updating table errors
+* Syntax errors
+* Valid table errors
+* Valid column errors
+* Etc.
 
 
 ## Entity Relationship Diagram
@@ -165,7 +176,6 @@ MySQL - database
 
 ![ER Diagram](https://github.com/ISTE-432-Group1/ISTE432-Group1/blob/main/ERDiagramMilestone2.png?raw=true)
 
-## Exception Handling
 
 
 ## Timeline
