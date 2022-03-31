@@ -254,6 +254,31 @@ Blurb about what we've changed and why
     }
 ```
 
+## Summary Report
+
+```sql
++-----------+-----------------+------------+
+| SubjectID | Subject         | # of Books |
++-----------+-----------------+------------+
+| R         | Religious       |        218 |
+| T         | Travel          |        200 |
+| G         | Great Man       |        166 |
+| L         | Literary Memoir |        138 |
+| M         | Military        |         88 |
+| H         | Historical      |         82 |
+| MC        | Middle-class    |         72 |
+| A         | Adventure       |         67 |
+| D         | Domestic        |         49 |
+| C         | Criminal        |         46 |
+| SC        | Social Critique |         40 |
+| S         | Satire          |         33 |
+| CY        | Celebrity       |         23 |
+| SD        | School Days     |          9 |
+| P         | Politics        |          4 |
+| TH        | Theatre         |          4 |
++-----------+-----------------+------------+
+```
+
 ## New ERD Diagram
 
 ![ER Diagram]("https://github.com/ISTE-432-Group1/ISTE432-Group1/blob/main/VAIN%20ERD-1.png?raw=true")
