@@ -1,23 +1,3 @@
--- CREATE DATABASE `ISTE432pt2` ;
--- USE `ISTE432pt2` ;
-
-
--- TODO:
--- [DONE]- Make tables
--- [DONE]- Set data types
--- [DONE]- Discern ??? types
--- [DONE]- Add auto increments
--- [DONE]- Add primary keys
--- [DONE]- Add foreign keys
-        -- CONSTRAINT a_b_fk FOREIGN KEY (aattribute) REFERENCES b (battribute)
--- [DONE]- Reorganized order of tables loaded in
--- [DONE]- Create values listed at bottom
--- []- Make dummy records (5-10)
--- []- Remove random comments from this file
--- []- Load into Solace / whatever Ben made the connection for
--- []- Make a user table [id, username, password, etc.]
--- [DONE/IGNORING]- BOOK_EDITION.illustrations & PUBLISHER.publisherType need to be added to dummy inserts
-
 
 -- namedPerson[_namedPersonID_,fname,lname,nobilityTitle,lifeYears,personNote]
   -- The note entry above will include any aliases or unstructured source info about names and titles. Will this work?? (Yes)
@@ -448,3 +428,24 @@ INSERT INTO BOOK_EDITION
     (bookID, editionID, publisherID, titleID, formatID, year, numberPages, numberVolumes, agreementTypeID, salePrice, paymentAgreedAmount, illustrationsPayment, copiesSold, copiesRemaining, profitLoss, proceedsAuthor, formatNote) 
     VALUES 
     (10, 1, 4, 10, 5, 1818, null, 1, 5, null, null, null, 716, 34, null, null, null);
+    
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS ROLES;
+SET FOREIGN_KEY_CHECKS=1;
+CREATE TABLE ROLES (
+    roleID int(11) NOT NULL AUTO_INCREMENT,
+    roleName varchar(255),
+    PRIMARY KEY(roleID)
+);
+
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS USERS;
+SET FOREIGN_KEY_CHECKS=1;
+CREATE TABLE USERS (
+    userID int(11) NOT NULL AUTO_INCREMENT,
+    username varchar(255),
+    password text,
+    roleID int(11),
+    PRIMARY KEY(userID),
+	CONSTRAINT USERS_ROLES_fk FOREIGN KEY (roleID) REFERENCES ROLES (roleID) ON DELETE CASCADE
+);
