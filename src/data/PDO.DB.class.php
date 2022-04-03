@@ -86,7 +86,7 @@
                 } else {
 
                     //table doesn't exist
-                    throw new Exception("Couldn't find table");
+                    throw new Exception("Method genericFetch: Couldn't find table");
 
                 }
 
@@ -223,7 +223,7 @@
                 } else {
 
                     //table doesn't exist
-                    throw new Exception("Couldn't find table");
+                    throw new Exception("Method describe(): Couldn't find table");
                     
                 }
 

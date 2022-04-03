@@ -2,14 +2,9 @@
 
 ## Performance and Refactoring
 
-Blurb about what we've changed and why
+For Milestone 4, we created and loaded the new database schema presented to us in class. We made some initial PHP code to help read and input data, with some minor validation. For Milestone 5, we added update and delete functionality, and refactored validation and sanitization code. We removed a lot of repeated lines of code, and opted to put them in reusable functions. We refactored some of the string concatenation functionality to be more organized. We abstracted some of the table building functionality to increase reusability. Finally, we created a new ER Diagram to match the new DB schema.
 
-### Example #1: User Interface
-
-```old code```
-```new code```
-
-### Example #2: Error Checking
+### Example: Error Checking
 
 #### Old Code
 ```php
