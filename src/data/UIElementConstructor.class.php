@@ -55,7 +55,23 @@
                     foreach ($row AS $value) {
                         $html .= "<td>" . $value . "</td>";
                     }
-                    $html .= "<td><button onclick='update()'>Update</button></td><td><button onclick='del()'>Delete</button</td></tr>\n";
+                    if(true) {
+                        $html .= UIElementConstructor::buildUpdateForm();
+                    }
+                    if(true) {
+                        $condition = [];
+                        foreach ($row AS $key => $value) {
+                            foreach ($describe AS $field) {
+                                if($field['Field'] == $key) {
+                                    if($field['Key'] == "PRI") {
+                                        $condition[] = "$key = $value";
+                                    }
+                                }
+                            }
+                        }
+                        $html .= UIElementConstructor::buildDeleteForm($table, implode(" AND ", $condition));
+                    }
+                    $html .= "</tr>\n";
                 }
                 $html .= "</table>\n";
                 if(count($select) == 0) {
@@ -87,11 +103,13 @@
         }
 
         // this is a proof of concept and has never been used except for in prototypes
-        function buildDeleteForm($table, $columns) {
-            $html = "<h3>Delete data from table in bulk</h3>\n<form action='./ExceptionTestUI.php' method='POST'>\n<input type='hidden' name='#tableInUse' value='$table'>";
-            $html .= "<label for='Where Clause'>Enter WHERE condition for the delete</label><br />\n<span>WHERE </span><input type='text id='condition' name='condition' placeholder='Example: id < 5'><span>;</span><br />\n";
-            $html .= "<input type='submit' value='delete'>\n</form>";
+        function buildDeleteForm($table, $condition) {
+            $html = "<td><button onclick='del(\"$table\", \"$condition\")'>Delete</button</td>";
             return $html;
         }
 
+        function buildUpdateForm() {
+            $html = "<td><button onclick='update()'>Update</button></td>";
+            return $html;
+        }
     }

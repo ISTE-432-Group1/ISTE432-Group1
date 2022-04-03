@@ -17,21 +17,21 @@
             if(isset($_POST['operation'])) {
                 switch($_POST['operation']) {
                     case "insert":
-                        $table = $_POST['table'];
                         $columns = [];
                         $values = [];
                         for($i = 2; $i < count($_POST); $i++) {
                             $columns[] = array_keys($_POST)[$i];
                             $values[] = $_POST[array_keys($_POST)[$i]];
                         }
-                        $success = $dbh -> genericInsert($table, $columns, $values);
+                        $success = $dbh -> genericInsert($_POST['table'], $columns, $values);
                         header("Location: ExceptionTestUI.php?table={$_POST['table']}");
                     break;
                     case "update":
                         // code for updating here
                     break;
                     case "delete":
-                        // code for delete here
+                        $rowsAffected = $dbh -> genericDelete($_POST['table'], $_POST['values']);
+                        header("Location: ExceptionTestUI.php?table={$_POST['table']}");
                     break;
                 }
             }
