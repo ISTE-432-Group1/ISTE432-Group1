@@ -8,7 +8,6 @@
 <html>
     <head>
         <title>Generic DB access UI</title>
-        <link rel="stylesheet" href="style.css">
         <script src="../js/tablefunctions.js"></script>
     </head>
     <body>

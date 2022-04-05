@@ -50,26 +50,18 @@
                 if(true) {
                     $html .= UIElementConstructor::buildInsertForm($table, $describe);
                 }
-                foreach ($select AS $row) {
-                    $html .= "<tr>";
-                    foreach ($row AS $value) {
+                for ($i = 0; $i < count($select); $i++) {
+                    $html .= "<tr id='$i'>";
+                    foreach ($select[$i] AS $value) {
                         $html .= "<td>" . $value . "</td>";
                     }
                     if(true) {
-                        $html .= UIElementConstructor::buildUpdateForm();
+                        $condition = UIElementConstructor::buildConditionalStatement($select[$i], $describe);
+                        $html .= UIElementConstructor::buildUpdateForm($table, $condition, $i);
                     }
                     if(true) {
-                        $condition = [];
-                        foreach ($row AS $key => $value) {
-                            foreach ($describe AS $field) {
-                                if($field['Field'] == $key) {
-                                    if($field['Key'] == "PRI") {
-                                        $condition[] = "$key = $value";
-                                    }
-                                }
-                            }
-                        }
-                        $html .= UIElementConstructor::buildDeleteForm($table, implode(" AND ", $condition));
+                        $condition = UIElementConstructor::buildConditionalStatement($select[$i], $describe);
+                        $html .= UIElementConstructor::buildDeleteForm($table, $condition);
                     }
                     $html .= "</tr>\n";
                 }
@@ -102,14 +94,32 @@
             return $inputfields . "<td><input type='submit' value='Insert' /></td></form></tr>\n";
         }
 
-        // this is a proof of concept and has never been used except for in prototypes
+        // This builds the delete form if they have permission to delete items
         function buildDeleteForm($table, $condition) {
             $html = "<td><button onclick='del(\"$table\", \"$condition\")'>Delete</button</td>";
             return $html;
         }
 
-        function buildUpdateForm() {
-            $html = "<td><button onclick='update()'>Update</button></td>";
+        // This builds the update form if they have permission to delete items
+        function buildUpdateForm($table, $condition, $rowId) {
+            $html = "<td><button onclick='update(\"$table\", \"$condition\", $rowId)'>Update</button></td>";
             return $html;
+        }
+
+        //this is for building the conditional statement on which the rows are updated or deleted
+        function buildConditionalStatement($row, $describe) {
+            $condition = [];
+            foreach ($row AS $key => $value) {
+                foreach ($describe AS $field) {
+                    if($field['Field'] == $key) {
+                        if($field['Key'] == "PRI" && (strpos($field['Type'], "char") == false || strpos($field['Type'], "text") == false)) {
+                            $condition[] = "$key = $value";
+                        } else if ($field['Key'] == "PRI") {
+                            $condition[] = "$key = '$value'";
+                        }
+                    }
+                }
+            }
+            return implode(" AND ", $condition);
         }
     }

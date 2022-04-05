@@ -2,8 +2,9 @@
 // the insert button didn't need any JS so it's not here
 
 // update a row
-function update() {
-    alert("update clicked");
+function update(table, conditionStatement, rowId) {
+    let row = document.getElementById(rowId);
+    
 }
 
 // delete a row
