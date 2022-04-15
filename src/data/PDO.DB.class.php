@@ -86,7 +86,7 @@
                 } else {
 
                     //table doesn't exist
-                    throw new Exception("Method genericFetch: Couldn't find table");
+                    throw new Exception("Couldn't find table");
 
                 }
 
@@ -106,7 +106,7 @@
             try {
 
                 // make sure table and columns exist
-                if (DB::columnsAreValid($columns)) {
+                if (DB::columnsAreValid($table, $columns)) {
 
                     // build query string
                     $queryBeginning = "UPDATE $table SET ";
@@ -223,7 +223,7 @@
                 } else {
 
                     //table doesn't exist
-                    throw new Exception("Method describe(): Couldn't find table");
+                    throw new Exception("Couldn't find table");
                     
                 }
 

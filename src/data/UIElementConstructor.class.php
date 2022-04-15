@@ -38,7 +38,7 @@
         // this is the only function in this class currently in use. I'll delete the others if we settle on this design.
         function buildInteractiveTable($table, $select, $describe) {
             if(true) {
-                $html = "<table>\n<tr>";
+                $html = "<table>\n<tr id='tableheaders'>";
                 foreach ($describe AS $value) {
                     $html .= "<th>" . $value['Field'];
                     if(!empty($value['Key'])) {

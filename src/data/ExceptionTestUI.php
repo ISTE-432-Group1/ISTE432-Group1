@@ -27,7 +27,14 @@
                         header("Location: ExceptionTestUI.php?table={$_POST['table']}");
                     break;
                     case "update":
-                        // code for updating here
+                        $columns = [];
+                        $values = [];
+                        for($i = 3; $i < count($_POST); $i++) {
+                            $columns[] = array_keys($_POST)[$i];
+                            $values[] = $_POST[array_keys($_POST)[$i]];
+                        }
+                        $success = $dbh -> genericUpdate($_POST['table'], $columns, $values, $_POST['condition']);
+                        header("Location: ExceptionTestUI.php?table={$_POST['table']}");
                     break;
                     case "delete":
                         $rowsAffected = $dbh -> genericDelete($_POST['table'], $_POST['values']);
