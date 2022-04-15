@@ -13,7 +13,7 @@
  * - Test functions must have names beginning with the word 'test'
  * 
  * To run tests:
- * - cd to this directory (tests)
+ * - cd to this directory (tests) on abp6318's Solace
  * - run `php ./phpunit ./UnitTests.php`
  *  - '.' means a successful test
  *  - 'F' means a failed test
