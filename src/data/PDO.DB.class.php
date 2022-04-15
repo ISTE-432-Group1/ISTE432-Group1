@@ -314,6 +314,20 @@
                 die();
             }
         }
+        
+        //--------- CONFIRM LOGIN ------------
+        function confirmLogin($user){
+            $data = array();
+            try{
+                $stmt = $this->dbh->prepare("SELECT userID, username, password, roleID FROM users WHERE username = :user");
+                $stmt->bindParam(":user", $user, PDO::PARAM_STR);
+                $stmt->execute();
+                return $stmt->fetchAll();
+            }catch(PDOException $pe){
+                echo $pe->getMessage();
+                return $data;
+            }
+        } // confirm login
     }
 
     function errorChecking($table, $columns, $values){
