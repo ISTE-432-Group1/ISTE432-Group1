@@ -50,5 +50,6 @@
                 echo $elementConstructor -> buildInteractiveTable($_GET['table'], $select, $describe);
             } 
         ?>
+        <a href="./logout.php">Logout</a>
     </body>
 </html>
