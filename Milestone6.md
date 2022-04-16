@@ -444,7 +444,21 @@ For Milestone 4, we created and loaded the new database schema presented to us i
 +-----------+-----------------+------------+
 ```
 
-## Testing 
+## Mock Object
+
+Login here: [http://solace.ist.rit.edu/~abp6318/iste432/project/src/data/login.php](http://solace.ist.rit.edu/~abp6318/iste432/project/src/data/login.php)
+
+Credentials: 
+ - username= admin
+ - password= password
+
+Steps:
+ 1. Select named_person on the drop down menu, and hit the query button.
+ 2. Insert a new named_person object by filling in the text fields above the table view (i.e. fname: "Cool"; lname: "Person"; nobilityTitle: "Supreme Awesomeness"; lifeYears: 22; personNote: "is sooooo cool";) and then click the insert button.
+ 3. Update the object you just created by clicking the update button, editing any of the fields, and then clicking the confirm button.
+ 4. Delete the object you created by clicking the delete button, and hitting ok on the pop up alert.
+
+## Unit Testing 
 
  For testing, we applied PHPUnit to conduct unit testing. It is fairly simple to set up and run from the command line. Its output is both human and machine readable, making it an efficient framework for performing such tests.
  
@@ -466,7 +480,7 @@ To run tests:
   - 'F' means a failed test
   - 'W' means a warning happened while trying to run test file
 
-Test Functions
+### Unit Test Functions
 
 ```php
 public function testStringText(){
