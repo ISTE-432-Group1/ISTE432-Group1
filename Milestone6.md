@@ -446,7 +446,9 @@ For Milestone 4, we created and loaded the new database schema presented to us i
 
 ## Testing 
 
- PHPUnit is used for unit testing. 
+ For testing, we applied PHPUnit to conduct unit testing. It is fairly simple to set up and run from the command line. Its output is both human and machine readable, making it an efficient framework for performing such tests.
+ 
+ We primarily focused on testing the validation methods set up in a previous milestone. Validation methods are essential to the integrity of our project.
  
 Installation:
  - cd to directory where you want to run your tests from (i.e. tests)
@@ -457,7 +459,8 @@ Writing Tests:
  - Test functions must have names beginning with the word 'test'
  
 To run tests:
- - cd to this directory (tests) on abp6318's Solace
+ - ssh into solace.ist.rit.edu
+ - cd to this directory ('/home/MAIN/abp6318/Sites/iste432/project/src/data/tests') on abp6318's Solace
  - run `php ./phpunit ./UnitTests.php`
   - '.' means a successful test
   - 'F' means a failed test
