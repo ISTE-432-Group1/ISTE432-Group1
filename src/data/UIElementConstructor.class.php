@@ -1,13 +1,19 @@
 <?php
 
+    require_once("../business/roleBasedAuth.php");
+
     class UIElementConstructor {
 
         // This method builds select lists based on the return value of the "show tables" pdo
-        function createTableSelect($tables) {
+        function createTableSelect($tables) {   
             $html = "<form action='./ExceptionTestUI.php' method='GET'>\n<select name='table'>\n";
             $html .="<option value=''>Select a table</option>\n";
             foreach($tables AS $table) {
-                $html .= "<option value='" . $table[0] . "'>" . $table[0] . "</option>\n"; 
+                // check to see if the person has the authority to do anything with the table
+                // if they can't, don't even let them select it
+                if (!empty(determine($table)[$_SESSION['roleID']])) {
+                    $html .= "<option value='" . $table[0] . "'>" . $table[0] . "</option>\n"; 
+                }
             }
             $html .= "</select>\n<input type='submit' value='query table'>\n</form>\n";
             return $html;
@@ -37,42 +43,41 @@
         
         // this is the only function in this class currently in use. I'll delete the others if we settle on this design.
         function buildInteractiveTable($table, $select, $describe) {
-            if(true) {
-                $html = "<table>\n<tr id='tableheaders'>";
-                foreach ($describe AS $value) {
-                    $html .= "<th>" . $value['Field'];
-                    if(!empty($value['Key'])) {
-                        $html .= " ({$value['Key']})";
-                    }
-                    $html .= "</th>";
+            $html = "<table>\n<tr id='tableheaders'>";
+            foreach ($describe AS $value) {
+                $html .= "<th>" . $value['Field'];
+                if(!empty($value['Key'])) {
+                    $html .= " ({$value['Key']})";
+                }
+                $html .= "</th>";
+            }
+            $html .= "</tr>\n";
+            // check to see if the user's role has "create" privileges for the table
+            if(strpos(determine($table)[$_SESSION['roleID']], "c") !== false) {
+                $html .= UIElementConstructor::buildInsertForm($table, $describe);
+            }
+            for ($i = 0; $i < count($select); $i++) {
+                $html .= "<tr id='$i'>";
+                foreach ($select[$i] AS $value) {
+                    $html .= "<td>" . $value . "</td>";
+                }
+                // check to see if the user's role has "update" priveledges for the table
+                if(strpos(determine($table)[$_SESSION['roleID']], "u") !== false) {
+                    $condition = UIElementConstructor::buildConditionalStatement($select[$i], $describe);
+                    $html .= UIElementConstructor::buildUpdateForm($table, $condition, $i);
+                }
+                // check to 
+                if(strpos(determine($table)[$_SESSION['roleID']], "d") !== false) {
+                    $condition = UIElementConstructor::buildConditionalStatement($select[$i], $describe);
+                    $html .= UIElementConstructor::buildDeleteForm($table, $condition);
                 }
                 $html .= "</tr>\n";
-                if(true) {
-                    $html .= UIElementConstructor::buildInsertForm($table, $describe);
-                }
-                for ($i = 0; $i < count($select); $i++) {
-                    $html .= "<tr id='$i'>";
-                    foreach ($select[$i] AS $value) {
-                        $html .= "<td>" . $value . "</td>";
-                    }
-                    if(true) {
-                        $condition = UIElementConstructor::buildConditionalStatement($select[$i], $describe);
-                        $html .= UIElementConstructor::buildUpdateForm($table, $condition, $i);
-                    }
-                    if(true) {
-                        $condition = UIElementConstructor::buildConditionalStatement($select[$i], $describe);
-                        $html .= UIElementConstructor::buildDeleteForm($table, $condition);
-                    }
-                    $html .= "</tr>\n";
-                }
-                $html .= "</table>\n";
-                if(count($select) == 0) {
-                    $html .= "<h3>(No data for this table)</h3>";
-                }
-                return $html;
-            } else {
-                return "<h3>Error: Permission denied</h3>";
             }
+            $html .= "</table>\n";
+            if(count($select) == 0) {
+                $html .= "<h3>(No data for this table)</h3>";
+            }
+            return $html;
         }
 
         // this isn't really needed anymore but I'm keeping it until we settle on a UI for inserts

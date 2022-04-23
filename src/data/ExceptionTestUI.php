@@ -12,6 +12,13 @@
     </head>
     <body>
         <?php
+            // first, let's see if they logged in
+            if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) {
+                // They didn't log in! throw 'em back to login.php
+                header("Location: login.php");
+                die();
+            }
+
             // have the user select a table from the dropdown
             echo $elementConstructor -> createTableSelect($dbh -> showTables());
             if(isset($_POST['operation'])) {
