@@ -5,13 +5,12 @@
     class UIElementConstructor {
 
         // This method builds select lists based on the return value of the "show tables" pdo
-        function createTableSelect($tables) {   
+        function createTableSelect($tables) {  
             $html = "<form action='./ExceptionTestUI.php' method='GET'>\n<select name='table'>\n";
-            $html .="<option value=''>Select a table</option>\n";
             foreach($tables AS $table) {
                 // check to see if the person has the authority to do anything with the table
                 // if they can't, don't even let them select it
-                if (!empty(determine($table)[$_SESSION['roleID']])) {
+                if (!empty(determine($table[0])[$_SESSION['roleID']['roleID']])) {
                     $html .= "<option value='" . $table[0] . "'>" . $table[0] . "</option>\n"; 
                 }
             }
@@ -53,7 +52,7 @@
             }
             $html .= "</tr>\n";
             // check to see if the user's role has "create" privileges for the table
-            if(strpos(determine($table)[$_SESSION['roleID']], "c") !== false) {
+            if(strpos(determine($table)[$_SESSION['roleID']['roleID']], "c") !== false) {
                 $html .= UIElementConstructor::buildInsertForm($table, $describe);
             }
             for ($i = 0; $i < count($select); $i++) {
@@ -62,12 +61,12 @@
                     $html .= "<td>" . $value . "</td>";
                 }
                 // check to see if the user's role has "update" priveledges for the table
-                if(strpos(determine($table)[$_SESSION['roleID']], "u") !== false) {
+                if(strpos(determine($table)[$_SESSION['roleID']['roleID']], "u") !== false) {
                     $condition = UIElementConstructor::buildConditionalStatement($select[$i], $describe);
                     $html .= UIElementConstructor::buildUpdateForm($table, $condition, $i);
                 }
                 // check to 
-                if(strpos(determine($table)[$_SESSION['roleID']], "d") !== false) {
+                if(strpos(determine($table)[$_SESSION['roleID']['roleID']], "d") !== false) {
                     $condition = UIElementConstructor::buildConditionalStatement($select[$i], $describe);
                     $html .= UIElementConstructor::buildDeleteForm($table, $condition);
                 }

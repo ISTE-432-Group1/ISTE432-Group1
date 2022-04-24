@@ -12,11 +12,16 @@
     </head>
     <body>
         <?php
+            session_name("iste432_project");
+            session_start();
+            
             // first, let's see if they logged in
-            if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) {
+            if(!isset($_SESSION['loggedIn'])) {
                 // They didn't log in! throw 'em back to login.php
-                header("Location: login.php");
-                die();
+                //header("Location: login.php");
+                //die();
+                var_dump($_SESSION);
+                // echo "didn't log in";
             }
 
             // have the user select a table from the dropdown

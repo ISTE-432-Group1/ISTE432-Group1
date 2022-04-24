@@ -70,7 +70,7 @@
 
     <form action="./login.php" method="post">
         Username: <input type="text" name="user" id="user" required><br>
-        Password: <input type="text" name="password" id="password" required><br>
+        Password: <input type="password" name="password" id="password" required><br>
         <input type="submit" value="Login"><br>
     </form>
 
