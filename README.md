@@ -9,6 +9,51 @@ The information we have on the state of VAIN is provided to us through Professor
 
 The current system’s third column does not allow for multiple “subject[s] of life writing” to be selected. For example, if a book featured an adventurous criminal, it could only be labeled with one of those categories. The fourth column in the existing table doesn’t seem to include any form of uniquely identifying/labeling authors. All that is included is first name, last name, and their age. The data dictionary explicitly tells us that column six has numerous records that contain unvalidated data. Column seven doesn’t include a consistently applied method for labeling books that don’t have a clear publication date. Columns eight and nine are “a mass of notes” (according to the data dictionary), and contain data with unvalidated/mixed data types. On top of all these issues with VAIN’s present state, it is not normalized, and contains a large amount of repeated records.
 
+## Deployment & Packaging
+
+### Prerequisites
+
+1. Intermediate knowledge of Git & GitHub
+2. Intermediate knowledge of SQL and MySQL
+3. Intermediate knowledge of UNIX/Linux (commands) & terminal usage
+4. Access to a web server
+5. A preferred editor
+
+### Download & Install
+
+1. Clone the repository from the [GitHub](https://github.com/ISTE-432-Group1/ISTE432-Group1)
+2. Import/upload the src directory from the repository into a web server you have access to
+* Solace/Banjo is available to students, professors, and alumni that are on RIT’s campus or the Cisco AnyConnect Secure Mobility Client. Should you choose this option, you’ll need to ssh into solace.ist.rit.edu or banjo.rit.edu, respectively. Then drag the src directory into the “Sites” directory.
+* Another option for non-RIT personnel, is downloadable MAMP/WAMP/LAMP stacks. These are free alternatives that can be found online and depend on the operating system you are using. Should you choose this option, you’ll need to drag the src directory into the “htdocs” directory under the application.
+3. If it hasn’t already been started, start your web server
+4. Navigate to “/src/data/login.php”
+5. Create a new file, “src/data/.htaccess”
+6. Open this htaccess file in your preferred editor and format as follows
+```bash
+SetEnv DB <db-name>
+SetEnv DB_SERVER <server-name>
+SetEnv DB_PASSWORD <connection-password>
+SetEnv DB_USER <connection-user>
+```
+7. Contact Aaron Putterman for information on the remote MySQL server using Heroku, or fill in the htaccess file with information pertaining to your local MySQL server
+* If you choose to use Aaron’s remote MySQL server, the data is already loaded.
+* If you choose to use your local server, the data that is needed can be found in the cloned repository, “DB2.sql”.
+8. You should now be able to log in. If not, please contact Aaron Putterman for assistance.
+
+### Alternative Access
+
+If you are an RIT student, professor, or alumnus, you can access this project via [our already hosted project] (http://solace.ist.rit.edu/~abp6318/iste432/project/src/data/login.php)
+
+### Help System
+
+Looking specifically at the search features within the application, our group tried to keep things simple. 
+1. No login is needed to search the database.
+2. If the “Default” attribute is selected, executing the search will display all records in the database. Each record includes the book’s bookid, edition, title, author’s first and last name, publisher’s full name, subject, and type.
+3. Choosing one of the other attributes allows you to search any length string (containing only alphanumeric characters). This constructs a query and returns a view of records that only match that input.
+* Note: The search uses partial string matching, making use of SQL’s wildcard characters.
+4. Any questions related to searching:
+* Can be directed to Aaron Putterman
+* Posted as issues on the GitHub repository
 
 ### Goals
 Our group plans to build out a new database that is normalized and only logs validated data. To accomplish this, we will make the following changes:
