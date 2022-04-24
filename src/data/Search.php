@@ -20,6 +20,7 @@ $dbh = new DB();
     <?php 
         //var_dump($_GET);
     ?>
+    <a href="./login.php">Login</a>
     <h1>Search a Book!</h1>
     <form action="./Search.php" method="get">
         Attribute: <select name="attribute">

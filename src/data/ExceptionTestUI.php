@@ -6,15 +6,12 @@
     $elementConstructor = new UIElementConstructor();
 ?>
 <html>
-
-<head>
-    <title>Generic DB access UI</title>
-    <script src="../js/tablefunctions.js"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-    <?php
+    <head>
+        <title>Generic DB access UI</title>
+        <script src="../js/tablefunctions.js"></script>
+    </head>
+    <body>
+        <?php
             session_name("iste432_project");
             session_start();
             
@@ -64,8 +61,16 @@
                 $describe = $dbh -> describe($_GET['table']);
                 echo $elementConstructor -> buildInteractiveTable($_GET['table'], $select, $describe);
             } 
-        ?>
-    <a href="./logout.php">Logout</a>
-</body>
 
+            // var_dump($_SESSION);
+
+            if($_SESSION['roleID']['roleID'] == 1){
+                // do the thing
+                
+                echo "<a href='./AdminRegister.php'>Create a new user</a><br>";
+               
+            }
+        ?>
+        <a href="./logout.php">Logout</a>
+    </body>
 </html>

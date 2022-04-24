@@ -57,6 +57,8 @@
     <title>Document</title>
 </head>
 <body>
+<a href="./ExceptionTestUI.php">Go Back</a><br>
+
     <h2>Create User</h2>
     <form action="./Register.php" method="post">
         Username: <input type="text" name="user" id="user" required><br>
@@ -68,6 +70,9 @@
             <option value="1">Admin</option>
         </select>
         <input type="submit" value="Register"><br>
-    </form>
+    </form><br>
+
+    <a href="./logout.php">Logout</a>
+
 </body>
 </html>
