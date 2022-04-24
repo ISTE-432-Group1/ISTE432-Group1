@@ -21,8 +21,8 @@
             // first, let's see if they logged in
             if(!isset($_SESSION['loggedIn'])) {
                 // They didn't log in! throw 'em back to login.php
-                //header("Location: login.php");
-                //die();
+                header("Location: login.php");
+                die();
                 var_dump($_SESSION);
                 // echo "didn't log in";
             }
