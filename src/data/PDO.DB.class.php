@@ -117,6 +117,7 @@
             }
         }
 
+        //------------------------------ SEARCH -----------------------------------
         // Search.php reads
         function searchDefault(){
             $data = array();

@@ -3,15 +3,19 @@ require_once('./PDO.DB.class.php');
 require_once('./UIElementConstructor.class.php');
 
 $dbh = new DB();
+$elementConstructor = new UIElementConstructor();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Search</title>
 </head>
+
 <body>
     <?php 
         var_dump($_GET);
@@ -27,7 +31,7 @@ $dbh = new DB();
             <option value="subject">subject</option>
             <option value="type">type</option>
         </select>
-         Search: <input type="text" name="searchText">
+        Search: <input type="text" name="searchText">
         <input type="submit" value="Submit">
     </form>
     <?php
@@ -37,6 +41,17 @@ $dbh = new DB();
                     // search
                     var_dump($dbh->searchDefault());
                     // display
+
+                    // validation
+                    if ($_GET['attribute'] = "Default" || $_GET['searchText'] = "") {
+                        echo "Please enter a search specification.";
+                    } else {
+                        //used buildTable instead of interactive because there is no table query
+                        //should we make a new table function for the search?
+                        $select = $dbh->searchDefault();
+                        $elementConstructor->buildTable($select);
+                        var_dump($dbh->searchDefault());
+                    }
                     break;
                 case "edition":
                     // validate searchText
@@ -96,4 +111,5 @@ $dbh = new DB();
 
     ?>
 </body>
+
 </html>
