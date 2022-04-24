@@ -372,6 +372,19 @@
                 return $data;
             }
         } // confirm login
+
+        function insertNewUser($username, $password, $roleID){
+            try{
+                $stmt = $this->dbh->prepare("INSERT INTO users (username, password, roleID) VALUES (:username, :password, :roleID)");
+                $stmt->bindParam(":username", $username, PDO::PARAM_STR);
+                $stmt->bindParam(":password", $password, PDO::PARAM_STR);
+                $stmt->bindParam(":roleID", intval($roleID), PDO::PARAM_INT);
+                $stmt->execute();
+                return $this->dbh->lastInsertId();
+            }catch(PDOException $pe){
+                echo $pe->getMessage();
+            }
+        }
     }
 
     function errorChecking($table, $columns, $values){
