@@ -1,4 +1,4 @@
-# Milestone 6: Testing
+# Milestone 7
 
 ## Team Members and Roles
 
@@ -517,13 +517,54 @@ public function testStringText(){
     }
 ```
 
-## Packaging
+## Deployment & Packaging
 
-How to use:
-In order to access our website you will need to be on the RIT campus or be on the RIT VPN.
+### Prerequisites
+
+1. Intermediate knowledge of Git & GitHub
+2. Intermediate knowledge of SQL and MySQL
+3. Intermediate knowledge of UNIX/Linux (commands) & terminal usage
+4. Access to a web server
+5. A preferred editor
+
+### Download & Install
+
+1. Clone the repository from the [GitHub](https://github.com/ISTE-432-Group1/ISTE432-Group1)
+2. Import/upload the src directory from the repository into a web server you have access to
+* Solace/Banjo is available to students, professors, and alumni that are on RIT’s campus or the Cisco AnyConnect Secure Mobility Client. Should you choose this option, you’ll need to ssh into solace.ist.rit.edu or banjo.rit.edu, respectively. Then drag the src directory into the “Sites” directory.
+* Another option for non-RIT personnel, is downloadable MAMP/WAMP/LAMP stacks. These are free alternatives that can be found online and depend on the operating system you are using. Should you choose this option, you’ll need to drag the src directory into the “htdocs” directory under the application.
+3. If it hasn’t already been started, start your web server
+4. Navigate to “/src/data/login.php”
+5. Create a new file, “src/data/.htaccess”
+6. Open this htaccess file in your preferred editor and format as follows
+```bash
+SetEnv DB <db-name>
+SetEnv DB_SERVER <server-name>
+SetEnv DB_PASSWORD <connection-password>
+SetEnv DB_USER <connection-user>
+```
+7. Contact Aaron Putterman for information on the remote MySQL server using Heroku, or fill in the htaccess file with information pertaining to your local MySQL server
+* If you choose to use Aaron’s remote MySQL server, the data is already loaded.
+* If you choose to use your local server, the data that is needed can be found in the cloned repository, “DB2.sql”.
+8. You should now be able to log in. If not, please contact Aaron Putterman for assistance.
+
+### Alternative Access
+
+If you are an RIT student, professor, or alumnus, you can access this project via [our already hosted project] (http://solace.ist.rit.edu/~abp6318/iste432/project/src/data/login.php)
+
+### Help System
+
+Looking specifically at the search features within the application, our group tried to keep things simple. 
+1. No login is needed to search the database.
+2. If the “Default” attribute is selected, executing the search will display all records in the database. Each record includes the book’s bookid, edition, title, author’s first and last name, publisher’s full name, subject, and type.
+3. Choosing one of the other attributes allows you to search any length string (containing only alphanumeric characters). This constructs a query and returns a view of records that only match that input.
+* Note: The search uses partial string matching, making use of SQL’s wildcard characters.
+4. Any questions related to searching:
+* Can be directed to Aaron Putterman
+* Posted as issues on the GitHub repository
+
 
 ## Entity Relationship Diagram
-
 
 ![ER Diagram](https://github.com/ISTE-432-Group1/ISTE432-Group1/blob/main/VAIN%20ERD-1.png?raw=true)
 
