@@ -73,7 +73,11 @@
         Password: <input type="password" name="password" id="password" required><br>
         <input type="submit" value="Login"><br>
     </form>
-
+    <form action="./login.php" method="post">
+    <input type="hidden" name="user" value="public">
+    <input type="hidden" name="password" value="password" required>
+    <input type="submit" value="Continue as public"><br>
+    </form>
     <!-- <a href="./signup.php">Sign Up</a> -->
 
 </body>

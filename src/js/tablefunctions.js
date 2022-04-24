@@ -35,8 +35,13 @@ function update(table, conditionStatement, rowId) {
             valuesToUpdate.push(tablefields[i]);
         }
     }
-    tablefields[tablefields.length-1].innerHTML= "<button onclick='cancelUpdate(" + rowId + ")'>cancel</button>";
-    tablefields[tablefields.length-2].innerHTML= "<button onclick='sendUpdate(\"" + table + "\", \"" + conditionStatement + "\")'>confirm</button>";
+    if(tablefields[tablefields.length-1].innerHTML.indexOf("Delete") == -1) {
+        tablefields[tablefields.length-1].innerHTML= "<button onclick='cancelUpdate(" + rowId + ")'>cancel</button> <button onclick='sendUpdate(\"" + table + "\", \"" + conditionStatement + "\")'>confirm</button>";
+    }
+    else {
+        tablefields[tablefields.length-2].innerHTML= "<button onclick='cancelUpdate(" + rowId + ")'>cancel</button>";
+        tablefields[tablefields.length-1].innerHTML= "<button onclick='sendUpdate(\"" + table + "\", \"" + conditionStatement + "\")'>confirm</button>";
+    }
 }
 
 function cancelUpdate(id) {
