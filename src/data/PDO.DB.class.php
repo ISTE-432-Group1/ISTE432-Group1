@@ -4,6 +4,17 @@
 
         // attr
         private $dbh;
+        private $search = "SELECT book.bookid, edition.editionstring, title.titlestring, named_person.fname, named_person.lname, publisher.publisherName, subject.subjectDescription, type.typeDescription FROM book
+        JOIN book_edition USING(bookID)
+        JOIN edition USING(editionID)
+        JOIN book_subject USING(bookID)
+            JOIN subject USING(subjectID)
+        JOIN book_type USING(bookID)
+            JOIN type USING(typeID)
+        JOIN author USING(bookID)
+            JOIN named_person USING(namedPersonID)
+        JOIN publisher USING(publisherID)
+        JOIN title USING(titleID)";
 
         //------------------------- CONNECT TO DB ------------------------------
 
@@ -103,6 +114,39 @@
                 echo $e -> getMessage();
                 return [];
                 die();
+            }
+        }
+
+        //------------------------------ SEARCH -----------------------------------
+        // Search.php reads
+        function searchDefault(){
+            $data = array();
+            try{
+                $stmt = $this->dbh->prepare($this->search);
+                $stmt->execute();
+                while($row = $stmt->fetch()){
+                    $data[] = $row;
+                }
+                return $data;
+            }catch(PDOException $pe){
+                echo $pe->getMessage();
+                return $data;
+            }
+        }
+
+        function searchFlex($attribute, $searchText){
+            $data = array();
+            try{
+                var_dump( " WHERE " . $attribute . " LIKE \"%" . $searchText . "%\"");
+                $stmt = $this->dbh->prepare($this->search . " WHERE " . $attribute . " LIKE \"%" . $searchText . "%\"");
+                $stmt->execute();
+                while($row = $stmt->fetch()){
+                    $data[] = $row;
+                }
+                return $data;
+            }catch(PDOException $pe){
+                echo $pe->getMessage();
+                return $data;
             }
         }
 
