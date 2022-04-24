@@ -60,7 +60,7 @@
 <a href="./ExceptionTestUI.php">Go Back</a><br>
 
     <h2>Create User</h2>
-    <form action="./Register.php" method="post">
+    <form action="./AdminRegister.php" method="post">
         Username: <input type="text" name="user" id="user" required><br>
         Password: <input type="text" name="password" id="password" required><br>
         Role: <select name="roleID">

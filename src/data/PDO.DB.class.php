@@ -137,7 +137,7 @@
         function searchFlex($attribute, $searchText){
             $data = array();
             try{
-                var_dump( " WHERE " . $attribute . " LIKE \"%" . $searchText . "%\"");
+                // var_dump( " WHERE " . $attribute . " LIKE \"%" . $searchText . "%\"");
                 $stmt = $this->dbh->prepare($this->search . " WHERE " . $attribute . " LIKE \"%" . $searchText . "%\"");
                 $stmt->execute();
                 while($row = $stmt->fetch()){

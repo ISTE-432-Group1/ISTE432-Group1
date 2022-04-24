@@ -1,6 +1,7 @@
 <?php
     require_once('./PDO.DB.class.php');
     require_once('./UIElementConstructor.class.php');
+    require_once('./validations.php');
 
     $dbh = new DB();
     $elementConstructor = new UIElementConstructor();
@@ -9,8 +10,10 @@
     <head>
         <title>Generic DB access UI</title>
         <script src="../js/tablefunctions.js"></script>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <h1>Query a Table</h1>
         <?php
             session_name("iste432_project");
             session_start();

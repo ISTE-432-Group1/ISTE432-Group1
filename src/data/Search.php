@@ -96,7 +96,7 @@ $dbh = new DB();
                     // display
                     $output = $dbh->searchFlex("edition.editionstring", $searchText);
                     $results = count($output);
-                    echo "Your search resulted in {$results} result(s).<hr>";
+                    echo "<h2>Your search resulted in {$results} result(s).</h2><hr>";
                     foreach($output as $book) {
                         echo "
                             <p><span style='font-weight: bold'>Edition:</span> {$book['editionstring']}</p>
@@ -119,7 +119,7 @@ $dbh = new DB();
                     // display
                     $output = $dbh->searchFlex("title.titlestring", $searchText);
                     $results = count($output);
-                    echo "Your search resulted in {$results} result(s).<hr>";
+                    echo "<h2>Your search resulted in {$results} result(s).</h2><hr>";
                     foreach($output as $book) {
                         echo "
                             <p><span style='font-weight: bold'>Title:</span> {$book['titlestring']}</p>
@@ -141,7 +141,7 @@ $dbh = new DB();
                     // display
                     $output = $dbh->searchFlex("named_person.fname", $searchText);
                     $results = count($output);
-                    echo "Your search resulted in {$results} result(s).<hr>";
+                    echo "<h2>Your search resulted in {$results} result(s).</h2><hr>";
                     foreach($output as $book) {
                         echo "
                             <p><span style='font-weight: bold'>Author:</span> {$book['fname']} {$book['lname']}</p>
@@ -163,7 +163,7 @@ $dbh = new DB();
                     // display
                     $output = $dbh->searchFlex("named_person.lname", $searchText);
                     $results = count($output);
-                    echo "Your search resulted in {$results} result(s).<hr>";
+                    echo "<h2>Your search resulted in {$results} result(s).</h2><hr>";
                     foreach($output as $book) {
                         echo "
                             <p><span style='font-weight: bold'>Author:</span> {$book['fname']} {$book['lname']}</p>
@@ -185,7 +185,7 @@ $dbh = new DB();
                     // display
                     $output = $dbh->searchFlex("publisher.publisherName", $searchText);
                     $results = count($output);
-                    echo "Your search resulted in {$results} result(s).<hr>";
+                    echo "<h2>Your search resulted in {$results} result(s).</h2><hr>";
                     foreach($output as $book) {
                         echo "
                             <p><span style='font-weight: bold'>Publisher:</span> {$book['publisherName']}</p>
@@ -207,7 +207,7 @@ $dbh = new DB();
                     // display
                     $output = $dbh->searchFlex("subject.subjectDescription", $searchText);
                     $results = count($output);
-                    echo "Your search resulted in {$results} result(s).<hr>";
+                    echo "<h2>Your search resulted in {$results} result(s).</h2><hr>";
                     foreach($output as $book) {
                         echo "
                             <p><span style='font-weight: bold'>Subject:</span> {$book['subjectDescription']}</p>
@@ -229,7 +229,7 @@ $dbh = new DB();
                     // display
                     $output = $dbh->searchFlex("type.typeDescription", $searchText);
                     $results = count($output);
-                    echo "Your search resulted in {$results} result(s).<hr>";
+                    echo "<h2>Your search resulted in {$results} result(s).</h2><hr>";
                     foreach($output as $book) {
                         echo "
                             <p><span style='font-weight: bold'>Type:</span> {$book['typeDescription']}</p>
