@@ -42,7 +42,7 @@ SetEnv DB_USER <connection-user>
 
 ### Alternative Access
 
-If you are an RIT student, professor, or alumnus, you can access this project via [our already hosted project] (http://solace.ist.rit.edu/~abp6318/iste432/project/src/data/login.php)
+If you are an RIT student, professor, or alumnus, you can access this project via [our already hosted project] (http://solace.ist.rit.edu/~da7238/ISTE432-Group1-1/src/presentation/login.php)
 
 ### Help System
 
