@@ -1,5 +1,5 @@
 <?php
-require_once('./PDO.DB.class.php');
+require_once('../data/PDO.DB.class.php');
 require_once('./UIElementConstructor.class.php');
 
 $dbh = new DB();
@@ -17,10 +17,7 @@ $dbh = new DB();
 </head>
 
 <body>
-    <?php 
-        //var_dump($_GET);
-    ?>
-    <a href="./login.php">Login</a>
+    <a class="button" href="./login.php">Login</a>
     <h1>Search a Book!</h1>
     <form action="./Search.php" method="get">
         Attribute: <select name="attribute">
@@ -34,22 +31,9 @@ $dbh = new DB();
             <option value="type">type</option>
         </select>
         Search: <input type="text" name="searchText">
-        <input type="submit" value="Submit">
+        <input class="button" type="submit" value="Submit">
     </form>
     <?php
-
-        // function searchDisplay($output) {
-        //     foreach($output as $book) {
-        //         echo "
-        //             <p><span style='font-weight: bold'>Edition:<span/> {$book['editionstring']}</p>
-        //             <p><span style='font-weight: bold'>Title:<span> {$book['titlestring']}</p>
-        //             <p><span style='font-weight: bold'>Author:<span> {$book['fname']} {$book['lname']}</p>
-        //             <p><span style='font-weight: bold'>Publisher:<span> {$book['publisherName']}</p>
-        //             <p><span style='font-weight: bold'>Subject:<span> {$book['subjectDescription']}</p>
-        //             <p><span style='font-weight: bold'>Type:<span> {$book['typeDescription']}</p>
-        //         ";
-        //     }
-        // }
         if(isset($_GET['attribute'])){
             
             switch($_GET['attribute']){

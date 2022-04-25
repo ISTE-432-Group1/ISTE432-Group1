@@ -1,20 +1,22 @@
 <?php
-    require_once('./PDO.DB.class.php');
+    require_once('../data/PDO.DB.class.php');
     require_once('./UIElementConstructor.class.php');
-    require_once('./validations.php');
+    require_once('../business/validations.php');
 
     $dbh = new DB();
     $elementConstructor = new UIElementConstructor();
 ?>
 <html>
-    <head>
-        <title>Generic DB access UI</title>
-        <script src="../js/tablefunctions.js"></script>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <h1>Query a Table</h1>
-        <?php
+
+<head>
+    <title>Generic DB access UI</title>
+    <script src="../business/js/tablefunctions.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Query a Table</h1>
+    <?php
             session_name("iste432_project");
             session_start();
             
@@ -69,11 +71,10 @@
 
             if($_SESSION['roleID']['roleID'] == 1){
                 // do the thing
-                
-                echo "<a href='./AdminRegister.php'>Create a new user</a><br>";
-               
+                echo "<a class='button' href='./AdminRegister.php'>Create a new user</a><br>";
             }
         ?>
-        <a href="./logout.php">Logout</a>
-    </body>
+    <a style="padding:10px" class="button" href="./logout.php">Logout</a>
+</body>
+
 </html>

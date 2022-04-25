@@ -1,7 +1,7 @@
 <?php
-    require_once('./PDO.DB.class.php');
-    require_once('./UIElementConstructor.class.php');
-    require_once('./validations.php');
+    require_once('../data/PDO.DB.class.php');
+    require_once('./presentation/UIElementConstructor.class.php');
+    require_once('../business/validations.php');
 
     $dbh = new DB();
 
@@ -50,16 +50,19 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <title>Create User</title>
 </head>
-<body>
-<a href="./ExceptionTestUI.php">Go Back</a><br>
 
-    <h2>Create User</h2>
+<body>
+    <a class="button" href="./ExceptionTestUI.php">Go Back</a><br>
+
+    <h1>Create User</h1>
     <form action="./AdminRegister.php" method="post">
         Username: <input type="text" name="user" id="user" required><br>
         Password: <input type="text" name="password" id="password" required><br>
@@ -69,10 +72,12 @@
             <option value="2">Editor</option>
             <option value="1">Admin</option>
         </select>
-        <input type="submit" value="Register"><br>
+        <br>
+        <input class="button" type="submit" value="Register"><br>
     </form><br>
 
-    <a href="./logout.php">Logout</a>
+    <a class="button" href="./logout.php">Logout</a>
 
 </body>
+
 </html>

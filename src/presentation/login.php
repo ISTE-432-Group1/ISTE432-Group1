@@ -1,8 +1,8 @@
 <?php
     spl_autoload_register(function($class){
-        include_once("./PDO.DB.class.php");
+        include_once("../data/PDO.DB.class.php");
     });
-    include_once("./validations.php");
+    include_once("../business/validations.php");
 
 
     session_name("iste432_project");
@@ -50,8 +50,6 @@
         }else{
             echo "Invalid login.</br>";
         }
-        
-        
     }else{
         echo "You need to login.</br>";
     }
@@ -59,22 +57,23 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <title>Login</title>
-    <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
-<body>
 
+<body>
+    <h1>Log In</h1>
     <form action="./login.php" method="post">
         Username: <input type="text" name="user" id="user" required><br>
         Password: <input type="password" name="password" id="password" required><br>
-        <input type="submit" value="Login"><br>
+        <input class="button" type="submit" value="Login"><br>
     </form>
-    <a href="./Search.php">Search for books!</a>
-    <!-- <a href="./signup.php">Sign Up</a> -->
-
+    <a class="button" href="./Search.php">Search for books!</a>
 </body>
+
 </html>

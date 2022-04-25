@@ -1,3 +1,18 @@
+.button {
+  background-color: plum;
+  color: black;
+  padding: 10px 10px;
+  text-decoration: none;
+  border-radius: 25px;
+}
+.button:hover {
+    background-color: lime;
+}
+
+body {
+    padding: 5%;
+}
+
 table {
     border-collapse: collapse;
 	border-radius: 10px;
