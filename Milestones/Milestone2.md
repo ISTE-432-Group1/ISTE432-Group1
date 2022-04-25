@@ -122,7 +122,7 @@ MySQL - database
 ## Entity Relationship Diagram
 
 
-![ER Diagram](https://github.com/ISTE-432-Group1/ISTE432-Group1/blob/main/ERDiagramMilestone2.png?raw=true)
+![ER Diagram](https://github.com/ISTE-432-Group1/ISTE432-Group1/blob/main/ERD/ERDiagramMilestone2.png?raw=true)
 
 
 ## Timeline
