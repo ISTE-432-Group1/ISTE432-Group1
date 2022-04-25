@@ -566,7 +566,7 @@ Looking specifically at the search features within the application, our group tr
 
 ## Entity Relationship Diagram
 
-![ER Diagram](https://github.com/ISTE-432-Group1/ISTE432-Group1/blob/main/MileStones/VAIN%20ERD-1.png?raw=true)
+![ER Diagram](https://github.com/ISTE-432-Group1/ISTE432-Group1/blob/main/ERD/VAIN%20ERD-1.png?raw=true)
 
 
 
