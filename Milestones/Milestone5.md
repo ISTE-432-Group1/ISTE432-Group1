@@ -276,4 +276,4 @@ For Milestone 4, we created and loaded the new database schema presented to us i
 
 ## New ERD Diagram
 
-![ER Diagram](https://github.com/ISTE-432-Group1/ISTE432-Group1/blob/main/VAIN%20ERD-1.png?raw=true)
+![ER Diagram](https://github.com/ISTE-432-Group1/ISTE432-Group1/blob/main/ERD/VAIN%20ERD-1.png?raw=true)
